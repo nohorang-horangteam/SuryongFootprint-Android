@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuryongFootprint">
         <activity
+
             android:name=".RankingActivity"
             android:exported="false" />
         <activity
@@ -39,6 +40,24 @@
         <activity
             android:name=".loginActivity"
             android:exported="false" />
+        <activity
+            android:name=".ApprovalDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ApprovalActivity"
+            android:exported="true" />
+        <activity
+            android:name=".PostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ChallengeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ChallengeViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
