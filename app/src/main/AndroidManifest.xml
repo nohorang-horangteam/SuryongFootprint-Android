@@ -8,6 +8,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SuryongFootprint" />
+        android:theme="@style/Theme.SuryongFootprint">
+        <activity
+            android:name=".RankingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindPasswordResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FIndIdResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindIdActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChangeNicknameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".loginActivity"
+            android:exported="false" />
+    </application>
 
 </manifest>
