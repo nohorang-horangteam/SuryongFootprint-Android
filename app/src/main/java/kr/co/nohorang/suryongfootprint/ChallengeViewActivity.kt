@@ -14,7 +14,7 @@ class ChallengeViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 종료 버튼 - 액티비티 종료 (클릭 안 됨)
-        binding.challengeViewExitBtn.setOnClickListener {
+        binding.imageButton.setOnClickListener {
             Toast.makeText(this,"버튼 클릭됨", Toast.LENGTH_SHORT).show()
             finish()
         }
