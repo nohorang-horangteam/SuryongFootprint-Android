@@ -42,4 +42,7 @@ interface UserService {
     fun updatePW(@Path("user_id") user_id:String,
                 @Body user:User) : Call<User>
 
+    //회원 탈퇴
+    @DELETE("/s-footprint/user/{user_id}")
+    fun deleteUser(@Path("user_id") user_id:String):Call<Void>
 }
