@@ -7,11 +7,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
+import kr.co.nohorang.suryongfootprint.databinding.ActivityPostBinding
 
 class MainActivity : AppCompatActivity() {
+    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 오늘의 챌린지 텍스트 앞으로 이동
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 메인메뉴 버튼 - 액티비티 이동
+        // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
         binding.approvalMenuBtn.setOnClickListener {
             val intent = Intent(this, ApprovalActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

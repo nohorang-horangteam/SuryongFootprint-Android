@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="15dp"
     android:background="@drawable/approval_edge"
     android:padding="16dp">
 
@@ -44,15 +44,14 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/approvalContentText"
+            android:id="@+id/postContentText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ellipsize="end"
             android:inputType="textMultiLine|text"
             android:text="챌린지 첫 인증! 물병 라벨 떼고 세척해서 버렸습니다."
             android:textColor="#333333"
-            android:textSize="14sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
