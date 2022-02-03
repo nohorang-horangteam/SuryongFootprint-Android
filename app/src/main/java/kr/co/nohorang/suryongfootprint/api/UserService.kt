@@ -12,11 +12,11 @@ interface UserService {
     //회원가입 - 정상 수행됨
     //request body - 회원가입할 User 정보
     @POST("/s-footprint/user")
-    fun createUser(@Body user : User):Call<User>
+    fun createUser(@Body user : User): retrofit2.Call<User>
 
     //로그인
     //request body - 아이디, 비밀번호
     @POST("/s-footprint/user/login")
-    fun doLogin(@Body loginInfo : LoginRequestDTO): Call<User>
+    fun doLogin(@Body loginInfo : LoginRequestDTO): retrofit2.Call<User>
 
 }
