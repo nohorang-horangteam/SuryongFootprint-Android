@@ -170,5 +170,24 @@ class TestActivity : AppCompatActivity() {
             })
 
         }
+
+        //회원 탈퇴
+        binding.deleteUserTestBtn.setOnClickListener {
+            //user_id 받아오기
+            var user_id = "test_id456"
+
+            //Retrofit 통신 - deleteUser
+            RetrofitBuilder.api.deleteUser(user_id).enqueue(object : Callback<Void> {
+                //request, response 정상 수행
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Log.d("DELETE_USER_T", "정상 수행")
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.d("DELETE_USER_F", "서버 응답 없음")
+                }
+            })
+
+        }
     }
 }
