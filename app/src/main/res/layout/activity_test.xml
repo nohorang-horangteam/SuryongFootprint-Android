@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".TestActivity">
 
     <Button
@@ -37,5 +38,30 @@
         android:backgroundTint="@color/main_blue"
         android:text="비밀번호 변경 테스트"
         android:textSize="11dp" />
+
+    <Button
+        android:id="@+id/findUserIdTestBtn"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
+        android:text="아이디 찾기 테스트"
+        android:textSize="11dp" />
+
+    <Button
+        android:id="@+id/findUserPWTestBtn"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
+        android:text="비밀번호 찾기 테스트"
+        android:textSize="11dp" />
+
+    <Button
+        android:id="@+id/deleteUserTestBtn"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
+        android:text="회원 탈퇴 테스트"
+        android:textSize="11dp" />
+
 
 </LinearLayout>
