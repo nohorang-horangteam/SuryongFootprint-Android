@@ -21,7 +21,7 @@ class TestActivity : AppCompatActivity() {
         // 회원가입 테스트
         binding.SignupTestBtn.setOnClickListener {
             //request로 전송할(회원가입할) user 정보 받아오기
-            var newUser = User("test_id123", "abcd123@gmail.com", "1234123@", "coco", "coconut")
+            var newUser = User("abcd", "abcd123@gmail.com", "1234123@", "coco", "coconut")
 
             //response로 가져올 data 선언
             var responseUser: User?=null
