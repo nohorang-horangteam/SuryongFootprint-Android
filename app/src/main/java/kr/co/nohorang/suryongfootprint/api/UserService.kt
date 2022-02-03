@@ -3,9 +3,7 @@ package kr.co.nohorang.suryongfootprint.api
 import kr.co.nohorang.suryongfootprint.data.LoginRequestDTO
 import kr.co.nohorang.suryongfootprint.data.User
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 //사용할 HTTP CRUD 동작들을 정의한 인터페이스
 interface UserService {
@@ -18,5 +16,30 @@ interface UserService {
     //request body - 아이디, 비밀번호
     @POST("/s-footprint/user/login")
     fun doLogin(@Body loginInfo : LoginRequestDTO): retrofit2.Call<User>
+
+    //아이디 찾기
+    @GET("/s-footprint/user/user_id")
+    fun findUserId(@Query("user_name") user_name : String,
+                   @Query("user_email") user_email : String
+    ):Call<String>
+
+    //비밀번호 찾기
+    @GET("/s-footprint/user/user_pw")
+    fun findUserPW(@Query("user_name") user_name : String,
+                   @Query("user_id") user_id : String,
+                   @Query("user_email") user_email : String
+    ):Call<String>
+
+    //닉네임 변경하기
+    //Body - User에서 user_nickname값만 사용 -> 나머지는 null 값이어도 됨.
+    @PATCH("/s-footprint/user/{user_id}/nickname")
+    fun updateNickname(@Path("user_id") user_id:String,
+                        @Body user:User) : Call<User>
+
+    //비밀번호 변경하기
+    //Body - User에서 user_pw값만 사용 -> 나머지는 null 값이어도 됨.
+    @PATCH("/s-footprint/user/{user_id}/pw")
+    fun updatePW(@Path("user_id") user_id:String,
+                @Body user:User) : Call<User>
 
 }

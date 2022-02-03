@@ -19,6 +19,22 @@
         android:layout_width="85dp"
         android:layout_height="48dp"
         android:text="로그인 테스트"
+        android:textSize="11dp"
         android:backgroundTint="@color/main_blue" />
 
+    <Button
+        android:id="@+id/updateNicknameTestBtn"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
+        android:text="닉네임 변경 테스트"
+        android:textSize="11dp" />
+
+    <Button
+        android:id="@+id/updatePasswordTestBtn"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
+        android:text="비밀번호 변경 테스트"
+        android:textSize="11dp" />
 </LinearLayout>
