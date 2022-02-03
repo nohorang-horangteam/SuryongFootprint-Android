@@ -9,8 +9,7 @@ data class User (@SerializedName("user_id")var user_id: String?,
                  @SerializedName("user_email")var user_email: String?,
                  @SerializedName("user_pw")var user_pw: String?,
                  @SerializedName("user_name")var user_name: String?,
-                 @SerializedName("user_nickname")var user_nickname:String?,
-                 @SerializedName("approval_count")var approval_count:Int?) :Serializable {
+                 @SerializedName("user_nickname")var user_nickname:String?) :Serializable {
 }
 
 data class LoginRequestDTO(@SerializedName("user_id") var user_id: String?,
