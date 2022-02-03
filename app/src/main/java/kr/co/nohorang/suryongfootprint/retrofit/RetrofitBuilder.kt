@@ -17,6 +17,7 @@ object RetrofitBuilder {
         //api 서버 연결
         val retrofit = Retrofit.Builder()
             .baseUrl("http://220.69.171.47:8080")//localhost 로 임시 설정
+
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 

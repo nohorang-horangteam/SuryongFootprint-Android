@@ -7,10 +7,15 @@ import kr.co.nohorang.suryongfootprint.databinding.ActivityChallengeBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
 
 class ChallengeActivity : AppCompatActivity() {
+    val binding by lazy { ActivityChallengeBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityChallengeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 툴바 뒤로가기 버튼 - 액티비티 종료
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
 
         // 확인 버튼 - 액티비티 이동
         binding.postBtn.setOnClickListener {
