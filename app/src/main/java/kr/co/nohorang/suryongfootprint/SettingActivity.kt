@@ -10,6 +10,10 @@ import android.util.Log
 import android.widget.Toast
 import kr.co.nohorang.suryongfootprint.databinding.ActivityPostBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivitySettingBinding
+import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SettingActivity : AppCompatActivity() {
     val binding by lazy { ActivitySettingBinding.inflate(layoutInflater) }
@@ -62,12 +66,27 @@ class SettingActivity : AppCompatActivity() {
             // 알림창 제목 및 선택지 설정
             alertDialogBuilder.setMessage("정말 탈퇴하시겠습니까?")
             alertDialogBuilder.setPositiveButton("예"){ dialogInterface: DialogInterface, i: Int ->
-                Toast.makeText(this, "탈퇴되었습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, loginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
+
+                // user_id 받아오기
+                val user_id = "aaaa"
+
+                // Retrofit 통신 - deleteUser
+                RetrofitBuilder.api.deleteUser(user_id).enqueue(object : Callback<Void> {
+                    //request, response 정상 수행
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        Log.d("DELETE_USER_T", "정상 수행")
+                        Toast.makeText(this@SettingActivity, "탈퇴되었습니다.", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@SettingActivity, loginActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("DELETE_USER_F", "서버 응답 없음")
+                    }
+                })
             }
             alertDialogBuilder.setNegativeButton("아니오") {dialogInterface: DialogInterface, i:Int ->
                 Log.d("SETTING", "탈퇴 취소")
