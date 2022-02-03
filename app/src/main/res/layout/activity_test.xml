@@ -21,4 +21,13 @@
         android:text="로그인 테스트"
         android:backgroundTint="@color/main_blue" />
 
+    <EditText
+        android:id="@+id/testidText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name" />
+
 </LinearLayout>

@@ -42,10 +42,10 @@
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".loginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ApprovalDetailActivity"
             android:exported="true" />
