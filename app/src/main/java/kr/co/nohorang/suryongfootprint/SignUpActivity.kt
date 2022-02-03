@@ -3,6 +3,7 @@ package kr.co.nohorang.suryongfootprint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import kr.co.nohorang.suryongfootprint.data.User
 import kr.co.nohorang.suryongfootprint.databinding.ActivitySignUpBinding
@@ -21,25 +22,37 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signupBtn.setOnClickListener {
             //request로 전송할(회원가입할) user 정보 받아오기(id, email, pw, name, nickname)
-            var newUser = User(binding.signupIdText.text.toString(), binding.signupEmailText.text.toString(), binding.signupPasswordText.text.toString(), binding.signupNameText.text.toString(), binding.signupNicknameText.text.toString())
+            var id=binding.signupIdText.text.toString().trim()
+            var email=binding.signupEmailText.text.toString().trim()
+            var pw=binding.signupPasswordText.text.toString().trim()
+            var name=binding.signupNameText.text.toString().trim()
+            var nickname= binding.signupNicknameText.text.toString().trim()
+            if(!id.isEmpty()&&!email.isEmpty()&&!pw.isEmpty()&&!name.isEmpty()&&!nickname.isEmpty())//회원가입 시도
+            {
+                var newUser = User(id, email, pw, name, nickname)
 
-            //response로 가져올 data 선언
-            var responseUser: User?=null
+                //response로 가져올 data 선언
+                var responseUser: User?=null
 
-            //Retrofit 통신 - createUser
-            RetrofitBuilder.api.createUser(newUser).enqueue(object : Callback<User> {
-                //request, response 정상 수행
-                override fun onResponse(call : Call<User>, response: Response<User>){
-                    responseUser=response.body()
-                    Log.d("SIGNUP_T","response : "+responseUser?.toString())
-                    Log.d("SIGNUP_T","New user_id : "+responseUser?.user_id)
-                    Log.d("SIGNUP_T","New user_pw : "+responseUser?.user_pw)
-                }
-                //request, response 실패
-                override fun onFailure(call : Call<User>, t: Throwable) {
-                    t.message?.let { Log.e("SIGNUP_F", it) }
-                }
-            })
+                //Retrofit 통신 - createUser
+                RetrofitBuilder.api.createUser(newUser).enqueue(object : Callback<User> {
+                    //request, response 정상 수행
+                    override fun onResponse(call : Call<User>, response: Response<User>){
+                        responseUser=response.body()
+                        Log.d("SIGNUP_T","response : "+responseUser?.toString())
+                        Log.d("SIGNUP_T","New user_id : "+responseUser?.user_id)
+                        Log.d("SIGNUP_T","New user_pw : "+responseUser?.user_pw)
+                    }
+                    //request, response 실패
+                    override fun onFailure(call : Call<User>, t: Throwable) {
+                        t.message?.let { Log.e("SIGNUP_F", it) }
+                    }
+                })
+
+            }
+            else{
+                Toast.makeText(this,"모든 항목을 작성해주세요.",Toast.LENGTH_LONG).show()
+            }
 
         }
 
