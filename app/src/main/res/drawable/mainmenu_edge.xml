@@ -8,7 +8,7 @@
 
     <item android:bottom="-1dp" android:left="-1dp">
         <shape>
-            <stroke android:color="#DDDDDD" android:width="0.005dp"/>
+            <stroke android:color="#DDDDDD" android:width="0.05dp"/>
         </shape>
     </item>
 </layer-list>
