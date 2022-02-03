@@ -119,5 +119,56 @@ class TestActivity : AppCompatActivity() {
             })
 
         }
+
+        //아이디 찾기
+        binding.findUserIdTestBtn.setOnClickListener {
+            //user_name과 user_email 받아오기
+            var user_name = "coco"
+            var user_email = "abcd123@gmail.com"
+
+            //response로 가져올 data 선언
+            var responseId: String?=null
+
+            //Retrofit 통신 - findUserId
+            RetrofitBuilder.api.findUserId(user_name,user_email).enqueue(object : Callback<String> {
+                //request, response 정상 수행
+                override fun onResponse(call : Call<String>, response: Response<String>){
+                    responseId=response.body().toString()
+                    Log.d("FIND_ID_T","response : "+response.body().toString())
+                    if(responseId==null){Log.d("FIND_ID_T","status : 사용자 없음.")}
+                }
+                //request, response 실패
+                override fun onFailure(call : Call<String>, t: Throwable) {
+                    t.message?.let { Log.e("FIND_ID_F", it) }
+                }
+            })
+
+        }
+
+        //비밀번호 찾기
+        binding.findUserPWTestBtn.setOnClickListener {
+            //user_name과 user_email 받아오기
+            var user_id = "test_id123"
+            var user_name = "coco"
+            var user_email = "abcd123@gmail.com"
+
+            //response로 가져올 data 선언
+            var responsePW: String?=null
+
+            //Retrofit 통신 - findUserId
+            RetrofitBuilder.api.findUserPW(user_name,user_id,user_email).enqueue(object : Callback<String> {
+                //request, response 정상 수행
+                override fun onResponse(call : Call<String>, response: Response<String>){
+                    responsePW=response.body().toString()
+                    Log.d("FIND_PW_T","response : "+response.body().toString())
+                    if(responsePW==null){Log.d("FIND_PW_T","status : 사용자 없음.")}
+                }
+                //request, response 실패
+                override fun onFailure(call : Call<String>, t: Throwable) {
+                    t.message?.let { Log.e("FIND_PW_F", it) }
+                }
+            })
+
+        }
     }
 }
