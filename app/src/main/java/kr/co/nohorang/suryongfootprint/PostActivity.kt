@@ -56,6 +56,12 @@ class PostActivity : BaseActivity() {
             hideKeyboard(binding.postContentEditText)
         }
 
+        // 인증 버튼 - 액티비티 종료 (+ DB에 저장)
+        binding.postBtn.setOnClickListener {
+            Toast.makeText(this, "인증이 업로드되었습니다.", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
         binding.imagePreview.setOnClickListener {
             // 갤러리 또는 카메라 선택
             val items = arrayOf<CharSequence>("카메라", "갤러리")
