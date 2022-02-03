@@ -6,10 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".ChangeNicknameActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@drawable/toolbar_edge"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="닉네임 변경"
+            android:textColor="#222222"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="177dp"
+            tools:layout_editor_absoluteY="20dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="back"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.727"
+        app:srcCompat="@drawable/back_icon" />
+
     <Button
         android:id="@+id/button7"
         android:layout_width="106dp"
         android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
         android:text="변경"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,19 +62,21 @@
         android:id="@+id/button6"
         android:layout_width="106dp"
         android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
         android:text="중복확인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toEndOf="@+id/textView24"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="사용 가능한 닉네임입니다."
+        android:textColor="@color/main_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.298"
@@ -42,44 +84,20 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
         app:layout_constraintVertical_bias="0.026" />
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="닉네임 변경하기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.398"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:contentDescription="back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
-
     <EditText
         android:id="@+id/editTextTextPersonName3"
         android:layout_width="278dp"
         android:layout_height="52dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="닉네임을 입력하세요"
+        android:hint="새 닉네임 입력"
         android:inputType="text"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-        app:layout_constraintVertical_bias="0.422" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.316" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
