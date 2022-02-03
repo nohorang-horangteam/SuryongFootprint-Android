@@ -17,7 +17,7 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         // 회원가입 테스트
         binding.SignupTestBtn.setOnClickListener {
             //request로 전송할(회원가입할) user 정보 받아오기
@@ -68,6 +68,56 @@ class TestActivity : AppCompatActivity() {
                     t.message?.let { Log.e("LOGIN_F", it) }
                 }
             })
+        }
+
+        //닉네임 변경
+        binding.updateNicknameTestBtn.setOnClickListener {
+            //user id와 변경할 닉네임 정보 받아오기
+            var newNickUser = User("test_id123", "", "", "", "coconut")
+            var user_id = "test_id123"
+            //response로 가져올 data 선언
+            var responseUser: User?=null
+
+            //Retrofit 통신 - updateNickname
+            RetrofitBuilder.api.updateNickname(user_id,newNickUser).enqueue(object : Callback<User> {
+                //request, response 정상 수행
+                override fun onResponse(call : Call<User>, response: Response<User>){
+                    responseUser=response.body()
+                    Log.d("UPDATE_NICKNAME_T","response : "+responseUser?.toString())
+                    Log.d("UPDATE_NICKNAME_T","user_id : "+responseUser?.user_id)
+                    Log.d("UPDATE_NICKNAME_T","New user_nickname : "+responseUser?.user_nickname)
+                }
+                //request, response 실패
+                override fun onFailure(call : Call<User>, t: Throwable) {
+                    t.message?.let { Log.e("UPDATE_NICKNAME_F", it) }
+                }
+            })
+
+        }
+
+        //비밀번호 변경
+        binding.updatePasswordTestBtn.setOnClickListener {
+            //user id와 변경할 pw 정보 받아오기
+            var newNickUser = User("test_id123", "", "1234", "", "")
+            var user_id = "test_id123"
+            //response로 가져올 data 선언
+            var responseUser: User?=null
+
+            //Retrofit 통신 - updatePw
+            RetrofitBuilder.api.updatePW(user_id,newNickUser).enqueue(object : Callback<User> {
+                //request, response 정상 수행
+                override fun onResponse(call : Call<User>, response: Response<User>){
+                    responseUser=response.body()
+                    Log.d("UPDATE_PASSWORD_T","response : "+responseUser?.toString())
+                    Log.d("UPDATE_PASSWORD_T","user_id : "+responseUser?.user_id)
+                    Log.d("UPDATE_PASSWORD_T","New user_pw : "+responseUser?.user_pw)
+                }
+                //request, response 실패
+                override fun onFailure(call : Call<User>, t: Throwable) {
+                    t.message?.let { Log.e("UPDATE_PASSWORD_F", it) }
+                }
+            })
+
         }
     }
 }
