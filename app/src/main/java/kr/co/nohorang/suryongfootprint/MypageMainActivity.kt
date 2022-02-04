@@ -2,25 +2,30 @@ package kr.co.nohorang.suryongfootprint
 
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Button
+import androidx.annotation.RequiresApi
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMainBinding
 
 class MypageMainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMypageMainBinding.inflate(layoutInflater) }
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
-         binding.homeMenuBtn.setOnClickListener {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
-                }
+        binding.homeMenuBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
         binding.approvalMenuBtn.setOnClickListener {
             val intent = Intent(this, ApprovalActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -72,7 +77,7 @@ class MypageMainActivity : AppCompatActivity() {
         }
 
         //spinning(드롭다운)
-        val dropdown = binding.dropdown.adapter
+        val adapter = binding.dropdown.adapter
         binding.dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -80,15 +85,28 @@ class MypageMainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                //발자국 불러오기
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
+        }
 
-            //완료전 승인대기 완료 버튼
+        //완료전 승인대기 완료 버튼
+        val color = getColor(R.color.btn_grey)
+
+        val button1: Button = findViewById(R.id.challenge_ing)
+        button1.setOnClickListener {
+            button1.setBackgroundColor(color)
+        }
+        val button2: Button = findViewById(R.id.challenge_approval)
+        button2.setOnClickListener {
+            button2.setBackgroundColor(color)
+        }
+        val button3: Button = findViewById(R.id.challenge_finish)
+        button3.setOnClickListener {
+            button3.setBackgroundColor(color)
         }
     }
-
 }
