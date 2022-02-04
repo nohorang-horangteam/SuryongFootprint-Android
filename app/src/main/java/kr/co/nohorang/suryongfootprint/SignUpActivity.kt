@@ -34,12 +34,12 @@ class SignUpActivity : AppCompatActivity() {
         }
         binding.signupIdText.addTextChangedListener {
             isIdFine=false
-            binding.nicknameCheckText.setTextColor(Color.parseColor("#ED5555"))
+            binding.idCheckText.setTextColor(Color.parseColor("#ED5555"))
             binding.idCheckText.setText("중복 확인을 해주세요")
         }
         binding.signupEmailText.addTextChangedListener {
             isEmailFine=false
-            binding.nicknameCheckText.setTextColor(Color.parseColor("#ED5555"))
+            binding.emailCheckText.setTextColor(Color.parseColor("#ED5555"))
             binding.emailCheckText.setText("중복 확인을 해주세요")
         }
 
