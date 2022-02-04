@@ -49,4 +49,5 @@
                 tools:listitem="@layout/listitem_challenge" />
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

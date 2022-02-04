@@ -20,6 +20,7 @@ class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val current_user_id:String=intent.getStringExtra("current_user_id").toString()
 
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
@@ -29,14 +30,17 @@ class SettingActivity : AppCompatActivity() {
         // 설정 메뉴 버튼 - 액티비티 이동
         binding.changeNicknameText.setOnClickListener {
             val intent = Intent(this, ChangeNicknameActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.changePwdText.setOnClickListener {
             val intent = Intent(this, ChangePasswordActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.questionText.setOnClickListener {
             val intent = Intent(this, QuestionActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.logoutText.setOnClickListener {
@@ -68,10 +72,9 @@ class SettingActivity : AppCompatActivity() {
             alertDialogBuilder.setPositiveButton("예"){ dialogInterface: DialogInterface, i: Int ->
 
                 // user_id 받아오기
-                val user_id = "aaaa"
 
                 // Retrofit 통신 - deleteUser
-                RetrofitBuilder.api.deleteUser(user_id).enqueue(object : Callback<Void> {
+                RetrofitBuilder.api.deleteUser(current_user_id).enqueue(object : Callback<Void> {
                     //request, response 정상 수행
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         Log.d("DELETE_USER_T", "정상 수행")

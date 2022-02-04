@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import kr.co.nohorang.suryongfootprint.ApprovalActivity.Companion.current_id2
 import kr.co.nohorang.suryongfootprint.data.TestCount
 import kr.co.nohorang.suryongfootprint.databinding.ListitemApprovalBinding
 
@@ -31,6 +32,7 @@ class CountHolder(val binding: ListitemApprovalBinding): RecyclerView.ViewHolder
     init {
         binding.root.setOnClickListener {
             val intent = Intent(binding.root.context, ApprovalDetailActivity::class.java)
+            intent.putExtra("current_user_id", current_id2)
             startActivity(binding.root.context, intent, null)
         }
     }
