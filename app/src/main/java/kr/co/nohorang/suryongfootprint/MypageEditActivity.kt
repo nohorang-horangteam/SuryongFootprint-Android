@@ -1,4 +1,4 @@
-package com.example.suryongfootprint
+package kr.co.nohorang.suryongfootprint
 
 import android.content.Context
 import android.content.Intent
@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import kr.co.nohorang.suryongfootprint.SettingActivity
+import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageEditBinding
 
 class MypageEditActivity : AppCompatActivity() {
+    val binding by lazy { ActivityMypageEditBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding = ActivityMypageEditBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 

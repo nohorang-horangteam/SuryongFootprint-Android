@@ -9,6 +9,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import android.widget.ToggleButton
+import androidx.core.widget.addTextChangedListener
 import kr.co.nohorang.suryongfootprint.data.User
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChangeNicknameBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChangePasswordBinding
@@ -37,52 +39,91 @@ class ChangePasswordActivity : AppCompatActivity() {
         binding.layout.setOnClickListener {
             hideKeyboard()
         }
+        binding.oldPwdEdit.addTextChangedListener { //editText에 글자가 입력되면 변수 false으로 초기화
+            isOldFine=false
+            binding.pwdChangeBtn.isEnabled = false
+            binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+            binding.oldStateText.setTextColor(Color.parseColor("#ED5555"))
+            binding.oldStateText.setText("확인 버튼을 눌러 주세요.")
+        }
+        binding.newPwdEdit1.addTextChangedListener {
+            isNewFine=false
+            binding.pwdChangeBtn.isEnabled = false
+            binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+            binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
+            binding.newStateText.setText("확인 버튼을 눌러 주세요.")
+        }
+        binding.newPwdEdit2.addTextChangedListener {
+            isNewFine=false
+            binding.pwdChangeBtn.isEnabled = false
+            binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+            binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
+            binding.newStateText.setText("확인 버튼을 눌러 주세요.")
+        }
 
         // 기존 비밀번호 확인 버튼 클릭
         binding.confirmBtn1.setOnClickListener {
-            binding.oldStateText.visibility = View.VISIBLE
-
-//            // 잘못된 입력인 경우
-//            binding.oldStateText.text = "잘못된 비밀번호입니다."
-//            binding.oldStateText.setTextColor(Color.parseColor("#ED5555"))
-//            isOldFine = false
-
-            // 올바른 입력인 경우
-            binding.oldStateText.text = "사용 가능한 닉네임입니다."
-            binding.oldStateText.setTextColor(Color.parseColor("#ACC236"))
-            isOldFine = true
-            if (isOldFine && isNewFine) {
-                binding.pwdChangeBtn.isEnabled = true
-                binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
+            if(!binding.oldPwdEdit.text.toString().trim().isEmpty())
+            {
+                //기존 비밀번호 가져와서 입력받은 값과 같은지 확인.
+                if(true){
+                    // 올바른 입력인 경우
+                    binding.oldStateText.text = "확인되었습니다."
+                    binding.oldStateText.setTextColor(Color.parseColor("#ACC236"))
+                    isOldFine = true
+                    if (isOldFine && isNewFine) {
+                        binding.pwdChangeBtn.isEnabled = true
+                        binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
+                    }
+                }
+                else{
+                    // 잘못된 입력인 경우
+                    binding.oldStateText.text = "잘못된 비밀번호입니다."
+                    binding.oldStateText.setTextColor(Color.parseColor("#ED5555"))
+                    isOldFine = false
+                }
             }
+            else{
+                binding.oldStateText.text = "내용을 입력하세요."
+            binding.oldStateText.setTextColor(Color.parseColor("#ED5555"))
+            isOldFine = false
+            }
+
         }
 
         // 새 비밀번호 확인 버튼 클릭
         binding.confirmBtn2.setOnClickListener {
-            binding.newStateText.visibility = View.VISIBLE
-
-            if (binding.newPwdEdit1.text.toString() != binding.newPwdEdit2.text.toString()) {
-                // 잘못된 입력인 경우
-                binding.newStateText.text = "잘못된 비밀번호입니다."
+            val newpw=binding.newPwdEdit1.text.toString().trim()
+            val newrepw=binding.newPwdEdit2.text.toString().trim()
+            if(!newpw.isEmpty()&&!newrepw.isEmpty()){
+                if (newpw != newrepw) {
+                    // 잘못된 입력인 경우
+                    binding.newStateText.text = "잘못된 입력입니다."
+                    binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
+                    isNewFine = false
+                } else {
+                    // 올바른 입력인 경우
+                    binding.newStateText.text = "비밀번호가 일치합니다."
+                    binding.newStateText.setTextColor(Color.parseColor("#ACC236"))
+                    isNewFine = true
+                }
+                if (isOldFine && isNewFine) {
+                    binding.pwdChangeBtn.isEnabled = true
+                    binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
+                }
+            }
+            else{
+                binding.newStateText.text = "내용을 입력하세요."
                 binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
                 isNewFine = false
-            } else {
-                // 올바른 입력인 경우
-                binding.newStateText.text = "사용 가능한 닉네임입니다."
-                binding.newStateText.setTextColor(Color.parseColor("#ACC236"))
-                isNewFine = true
-            }
-            if (isOldFine && isNewFine) {
-                binding.pwdChangeBtn.isEnabled = true
-                binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
             }
         }
 
         // 확인 버튼 클릭 - 닉네임 변경 (+ 중복 확인 여부)
         binding.pwdChangeBtn.setOnClickListener {
             //user id와 변경할 pw 정보 받아오기
-            val userIdData = "Name"
-            val userPwdData = binding.newPwdEdit1.text.toString()
+            val userIdData = "Name"  // 현재 접속중인 회원 아이디 필요.
+            val userPwdData = binding.newPwdEdit1.text.toString().trim()
             var newNickUser = User(userIdData, "", userPwdData, "", "")
 
             //response로 가져올 data 선언
@@ -96,6 +137,8 @@ class ChangePasswordActivity : AppCompatActivity() {
                     Log.d("UPDATE_PASSWORD_T", "response : " + responseUser?.toString())
                     Log.d("UPDATE_PASSWORD_T", "user_id : " + responseUser?.user_id)
                     Log.d("UPDATE_PASSWORD_T", "New user_pw : " + responseUser?.user_pw)
+                    Toast.makeText(this@ChangePasswordActivity,"비밀번호가 변경 되었습니다.",Toast.LENGTH_LONG).show()
+                    finish()
                 }
 
                 //request, response 실패

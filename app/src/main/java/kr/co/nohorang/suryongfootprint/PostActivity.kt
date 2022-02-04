@@ -1,7 +1,6 @@
 package kr.co.nohorang.suryongfootprint
 
 import android.Manifest
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Context
@@ -11,23 +10,26 @@ import android.graphics.ImageDecoder
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
-import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivityPostBinding
 import java.io.IOException
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import android.content.DialogInterface
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import kr.co.nohorang.suryongfootprint.data.Post
+import kr.co.nohorang.suryongfootprint.data.PostCreationDTO
+import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+
 
 class PostActivity : BaseActivity() {
     val PERM_STORAGE = 99
@@ -42,6 +44,11 @@ class PostActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        // 이전 액티비티에서 챌린지 아이디 전달 받기
+        val challengeIntent = getIntent()
+        var challengeID = challengeIntent.getIntExtra("challenge", -1)
+        Log.d("CHALLENGE_ID", challengeID.toString())
 
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
@@ -58,6 +65,33 @@ class PostActivity : BaseActivity() {
 
         // 인증 버튼 - 액티비티 종료 (+ DB에 저장)
         binding.postBtn.setOnClickListener {
+            //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
+            val user_id = "testID"
+
+            var p_dto = PostCreationDTO("testID",1, realUri,"챌린지 참여합니다~",1)
+
+            //response로 가져올 data 선언
+            var responsePost: Post?=null
+
+            //Retrofit 통신 - getChallenges
+            RetrofitBuilder.challenge_api.createPost(p_dto).enqueue(object : Callback<Post> {
+                //request, response 정상 수행
+                override fun onResponse(call: Call<Post>, response: Response<Post>) {
+                    //업로드한 Post 정보
+                    responsePost=response.body()
+                    Log.d("CREATE_POST_T", "response : " + responsePost?.toString())
+                    Log.d("CREATE_POST_T", "user_id : " + responsePost?.user_id)
+                    Log.d("CREATE_POST_T", "challenge_id : " + responsePost?.challenge_id.toString())
+                    Log.d("CREATE_POST_T", "img : " + responsePost?.img.toString())
+                    Log.d("CREATE_POST_T", "content : " + responsePost?.content)
+                    Log.d("CREATE_POST_T", "state : " + responsePost?.state.toString() )
+                }
+
+                //request, response 실패
+                override fun onFailure(call: Call<Post>, t: Throwable) {
+                    t.message?.let { Log.e("CREATE_POST_F", it) }
+                }
+            })
             Toast.makeText(this, "인증이 업로드되었습니다.", Toast.LENGTH_SHORT).show()
             finish()
         }
@@ -171,6 +205,14 @@ class PostActivity : BaseActivity() {
                     realUri?.let { uri ->
                         val bitmap = loadBitmap(uri)
                         binding.imagePreview.setImageBitmap(bitmap)
+
+                        // 비트맵 BLOB 형식으로 변환
+                        val stream = ByteArrayOutputStream()
+                        if (bitmap != null) {
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                        }
+                        var blobImg = null
+                        blobImg = stream.toByteArray() as Nothing?
 
                         realUri = null
                     }

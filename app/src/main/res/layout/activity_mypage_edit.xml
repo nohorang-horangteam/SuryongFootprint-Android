@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MypageEditActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+<<<<<<< HEAD
 
         <ImageView
             android:id="@+id/backBtn"
@@ -24,6 +26,20 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/back_icon" />
 
+=======
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="#00FFFFFF"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/back_icon"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="18dp" />
+>>>>>>> 08d4328c2fd2d2979d712509d3eeacbffeb7ba9b
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
@@ -77,8 +93,9 @@
             android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:ems="10"
+            android:hint="내용을 입력하세요."
             android:inputType="textPersonName"
-            android:text="입력" />
+            android:padding="5dp" />
     </LinearLayout>
 
     <LinearLayout

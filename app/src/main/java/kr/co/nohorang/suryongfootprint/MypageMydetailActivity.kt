@@ -1,19 +1,24 @@
-package com.example.suryongfootprint
+package kr.co.nohorang.suryongfootprint
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import kr.co.nohorang.suryongfootprint.SettingActivity
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMydetailBinding
 
 class MypageMydetailActivity : AppCompatActivity() {
+    val binding by lazy { ActivityMypageMydetailBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding = ActivityMypageMydetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         //날짜불러오기
 
+        // 툴바 뒤로가기 버튼 - 액티비티 종료
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
         //수정하기 버튼
         binding.confirm.setOnClickListener() {
             //수정페이지로

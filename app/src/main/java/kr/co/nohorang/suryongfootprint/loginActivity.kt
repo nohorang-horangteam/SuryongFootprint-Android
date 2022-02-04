@@ -69,22 +69,19 @@ class loginActivity : AppCompatActivity() {
                     }
                 })
             } else {
-                Toast.makeText(this@loginActivity, "잘못된 입력입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@loginActivity, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             }
 
         }
         binding.loginFindIdBtn.setOnClickListener {
-            Log.d("clicktest", "click findid suc")
             val intent = Intent(this, FindIdActivity::class.java)
             startActivity(intent)
         }
         binding.loginFindPasswordBtn.setOnClickListener {
-            Log.d("clicktest", "click findpassword suc")
             val intent = Intent(this, FindPasswordActivity::class.java)
             startActivity(intent)
         }
         binding.loginSignupBtn.setOnClickListener {
-            Log.d("clicktest", "click signup suc")
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
