@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
+import kr.co.nohorang.suryongfootprint.BadgeActivity
+import kr.co.nohorang.suryongfootprint.SettingActivity
+
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMainBinding
 
 class MypageMainActivity : AppCompatActivity() {
@@ -13,12 +17,16 @@ class MypageMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val current_user_id=intent.getStringExtra("current_user_id")
+        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
+
         binding.homeMenuBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.approvalMenuBtn.setOnClickListener {
@@ -26,6 +34,7 @@ class MypageMainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
@@ -34,17 +43,20 @@ class MypageMainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         //세팅 버튼
         binding.settingBtn.setOnClickListener() {
             val intent = Intent(this, SettingActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
         //뱃지 버튼
         binding.badgeBtn.setOnClickListener() {
             val intent = Intent(this, BadgeActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 

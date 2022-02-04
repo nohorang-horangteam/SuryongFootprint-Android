@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
@@ -16,6 +17,9 @@ class MypageEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val current_user_id=intent.getStringExtra("current_user_id")
+        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
 
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {

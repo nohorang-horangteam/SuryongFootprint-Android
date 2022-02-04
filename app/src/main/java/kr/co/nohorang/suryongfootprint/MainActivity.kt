@@ -23,19 +23,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        val current_user_id=intent.getStringExtra("current_user_id")
+        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 오늘의 챌린지 텍스트 앞으로 이동
         binding.dailyChallengeText.bringToFront()
-
         // 오늘의 챌린지 버튼 - 액티비티 이동
         binding.dailyChallengeBtn.setOnClickListener {
             val intent = Intent(this, ChallengeActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
         // 다른 챌린지 보기 버튼 - 액티비티 이동
         binding.viewMoreChallengeBtn.setOnClickListener {
             val intent = Intent(this, ChallengeViewActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.rankingMenuBtn.setOnClickListener {
@@ -52,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.mypageMenuBtn.setOnClickListener {
@@ -59,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
@@ -107,26 +112,31 @@ class MainActivity : AppCompatActivity() {
                     binding.mainChallengeBtn1.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[0].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn2.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[1].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn3.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[2].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn4.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[3].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn5.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[4].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                 } else {

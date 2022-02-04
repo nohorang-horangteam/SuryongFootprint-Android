@@ -30,8 +30,8 @@ class loginActivity : AppCompatActivity() {
         // 로그인 테스트
         binding.loginBtn.setOnClickListener {
             //request로 전송할(회원가입할) user 정보 받아오기(id, password)
-            var id = binding.loginIdEdit.text.toString()
-            var pwd = binding.loginPasswordEdit.text.toString()
+            var id:String = binding.loginIdEdit.text.toString()
+            var pwd:String = binding.loginPasswordEdit.text.toString()
             id = id.trim()
             pwd = pwd.trim()
             if (!id.isEmpty() && !pwd.isEmpty()) {
@@ -53,6 +53,7 @@ class loginActivity : AppCompatActivity() {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            intent.putExtra("current_user_id", id)
                             Toast.makeText(this@loginActivity, "로그인되었습니다.", Toast.LENGTH_SHORT)
                                 .show()
                             startActivity(intent)
