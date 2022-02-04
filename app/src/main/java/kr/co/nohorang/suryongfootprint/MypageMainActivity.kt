@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+<<<<<<< HEAD
+import com.example.suryongfootprint.databinding.ActivityMypageMainBinding
+=======
 import kr.co.nohorang.suryongfootprint.BadgeActivity
+>>>>>>> 08d4328c2fd2d2979d712509d3eeacbffeb7ba9b
 import kr.co.nohorang.suryongfootprint.SettingActivity
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMainBinding
 
@@ -52,6 +56,19 @@ class MypageMainActivity : AppCompatActivity() {
 
         //spinning(드롭다운)
         //완료한 챌린지 불러오는거 연결 필요
+        binding.dropdown.adapter = adapter
+        binding.dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                //발자국 불러오기
+            }
+
+            //완료전 승인대기 완료 버튼
+        }
 //        binding.dropdown.adapter = adapter
 //        binding.dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 //            override fun onItemSelected(
