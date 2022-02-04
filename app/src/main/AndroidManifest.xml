@@ -23,34 +23,42 @@
             android:exported="true" />
         <activity
             android:name=".RankingActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FindPasswordResultActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FIndIdResultActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FindPasswordActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FindIdActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".QuestionActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ChangeNicknameActivity"
-            android:exported="false" />
+            android:exported="true" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="true" />
         <activity
             android:name=".SettingActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".loginActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ApprovalDetailActivity"
             android:exported="true" />
