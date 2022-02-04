@@ -20,7 +20,8 @@ class ChallengeViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        val current_user_id:String=intent.getStringExtra("current_user_id").toString()
+        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 종료 버튼 앞으로 이동
         binding.challengeViewExitBtn.bringToFront()
 

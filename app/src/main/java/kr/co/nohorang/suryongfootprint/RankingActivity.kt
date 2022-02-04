@@ -13,13 +13,15 @@ class RankingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        val current_user_id=intent.getStringExtra("user_id")
+        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
         binding.approvalMenuBtn.setOnClickListener {
             val intent = Intent(this, ApprovalActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.homeMenuBtn.setOnClickListener {
@@ -27,6 +29,7 @@ class RankingActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.mypageMenuBtn.setOnClickListener {
@@ -34,6 +37,7 @@ class RankingActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         //랭킹 data 받아서 띄우기
