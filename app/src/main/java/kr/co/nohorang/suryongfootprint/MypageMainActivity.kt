@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import kr.co.nohorang.suryongfootprint.BadgeActivity
 import kr.co.nohorang.suryongfootprint.SettingActivity
+
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMainBinding
 
 class MypageMainActivity : AppCompatActivity() {
@@ -19,14 +20,15 @@ class MypageMainActivity : AppCompatActivity() {
         val current_user_id=intent.getStringExtra("current_user_id")
         Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
-         binding.homeMenuBtn.setOnClickListener {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.putExtra("current_user_id", current_user_id)
-                    startActivity(intent)
-                }
+
+        binding.homeMenuBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
+            startActivity(intent)
+        }
         binding.approvalMenuBtn.setOnClickListener {
             val intent = Intent(this, ApprovalActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -14,24 +14,34 @@ class MypageMydetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         val current_user_id=intent.getStringExtra("current_user_id")
         Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
+
+
+        //날짜불러오기
+
+
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
             finish()
         }
         //수정하기 버튼
         binding.confirm.setOnClickListener() {
-            val intent = Intent(this, SettingActivity::class.java)
+            //수정페이지로
+            val intent = Intent(this, MypageEditActivity::class.java)
             intent.putExtra("current_user_id", current_user_id)
+
             startActivity(intent)
-            //글 수정하기
+
+            Toast.makeText(this, "수정되었습니다.", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         //삭제하기 버튼
         binding.delete.setOnClickListener() {
-            val intent = Intent(this, SettingActivity::class.java)
+            Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
             intent.putExtra("current_user_id", current_user_id)
-            startActivity(intent)
-            //글 삭제하기
+            finish()
+            //서버에서 글 삭제
+
         }
     }
 }
