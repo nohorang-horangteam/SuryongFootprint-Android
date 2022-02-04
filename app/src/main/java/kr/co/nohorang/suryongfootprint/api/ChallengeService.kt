@@ -1,6 +1,7 @@
 package kr.co.nohorang.suryongfootprint.api
 
 import kr.co.nohorang.suryongfootprint.data.Challenge
+import kr.co.nohorang.suryongfootprint.data.Count
 import kr.co.nohorang.suryongfootprint.data.Post
 import kr.co.nohorang.suryongfootprint.data.PostCreationDTO
 import retrofit2.Call
@@ -18,5 +19,7 @@ interface ChallengeService {
     @POST("/s-footprint/challenge/post")
     fun createPost(@Body pcd : PostCreationDTO): Call<Post>
 
-
+    //전체 Count 가져오기
+    @GET("/s-footprint/challenge/count")
+    fun getPostCounts():Call<List<Count>>
 }
