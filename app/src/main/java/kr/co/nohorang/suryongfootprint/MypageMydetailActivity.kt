@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import kr.co.nohorang.suryongfootprint.SettingActivity
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMydetailBinding
+import java.text.SimpleDateFormat
 
 class MypageMydetailActivity : AppCompatActivity() {
     val binding by lazy { ActivityMypageMydetailBinding.inflate(layoutInflater) }
@@ -16,6 +17,10 @@ class MypageMydetailActivity : AppCompatActivity() {
 
 
         //날짜불러오기
+        val date = binding.toolbarTitle.text
+        var sdf = SimpleDateFormat("yyyy/MM/dd")
+        var formattedDate = sdf.format(date)
+        binding.toolbarTitle.text = formattedDate
 
 
         // 툴바 뒤로가기 버튼 - 액티비티 종료
