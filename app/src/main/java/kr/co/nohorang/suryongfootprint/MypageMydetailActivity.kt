@@ -1,4 +1,4 @@
-package com.example.suryongfootprint
+package kr.co.nohorang.suryongfootprint
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,10 @@ class MypageMydetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // 툴바 뒤로가기 버튼 - 액티비티 종료
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
         //수정하기 버튼
         binding.confirm.setOnClickListener() {
             val intent = Intent(this, SettingActivity::class.java)
