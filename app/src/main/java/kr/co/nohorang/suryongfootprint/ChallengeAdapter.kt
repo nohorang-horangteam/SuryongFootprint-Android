@@ -15,7 +15,6 @@ import kr.co.nohorang.suryongfootprint.data.Challenge
 import kr.co.nohorang.suryongfootprint.databinding.ListitemChallengeBinding
 
 class ChallengeAdapter: RecyclerView.Adapter<ChallengeHolder>() {
-    // 실제 데이터로 변환 필요
     var listData = mutableListOf<Challenge>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeHolder {
