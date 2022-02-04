@@ -18,15 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-<<<<<<< HEAD
 
-        <ImageView
-            android:id="@+id/backBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/back_icon" />
-
-=======
         <ImageButton
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
@@ -39,7 +31,6 @@
             tools:ignore="SpeakableTextPresentCheck"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="18dp" />
->>>>>>> 08d4328c2fd2d2979d712509d3eeacbffeb7ba9b
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
