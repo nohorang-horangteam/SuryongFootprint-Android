@@ -24,7 +24,7 @@ class ChallengeActivity : AppCompatActivity() {
             finish()
         }
 
-        // 이전 액티비티에서 챌린지 객체 전달 받기
+        // 이전 액티비티에서 챌린지 아이디 전달 받기
         val challengeIntent = getIntent()
         var challengeID = challengeIntent.getIntExtra("challenge", -1)
         Log.d("CHALLENGE_ID", challengeID.toString())

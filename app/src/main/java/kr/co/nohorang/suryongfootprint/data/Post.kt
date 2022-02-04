@@ -1,5 +1,6 @@
 package kr.co.nohorang.suryongfootprint.data
 
+import android.net.Uri
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.sql.Blob
@@ -16,11 +17,11 @@ data class Post (@SerializedName("postId")var post_id: String?,
 ) :Serializable {}
 
 data class PostCreationDTO(
-                           @SerializedName("userId")var user_id: String?,
-                           @SerializedName("challengeId")var challenge_id: Int?,
-                           @SerializedName("img")var img: Blob?,
-                           @SerializedName("content")var content:String?,
-                           @SerializedName("state")var state:Int?
+    @SerializedName("userId") var user_id: String?,
+    @SerializedName("challengeId") var challenge_id: Int?,
+    @SerializedName("img") var img: Uri?,
+    @SerializedName("content") var content:String?,
+    @SerializedName("state") var state:Int?
 ):Serializable{}
 
 data class PostUpdateDTO(
