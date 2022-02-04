@@ -1,4 +1,4 @@
-package com.example.suryongfootprint
+package kr.co.nohorang.suryongfootprint
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +10,10 @@ class BadgeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // 툴바 뒤로가기 버튼 - 액티비티 종료
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
         //뱃지 개수 받아오기
 
         //뱃지 멘트 불러오기

@@ -1,4 +1,4 @@
-package com.example.suryongfootprint
+package kr.co.nohorang.suryongfootprint
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
