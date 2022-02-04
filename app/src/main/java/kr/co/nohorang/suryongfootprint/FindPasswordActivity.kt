@@ -19,7 +19,8 @@ class FindPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        val current_user_id=intent.getStringExtra("current_user_id")
+        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
             finish()
@@ -32,16 +33,16 @@ class FindPasswordActivity : AppCompatActivity() {
 
         //비밀번호 찾기
         binding.findPwdConfirmBtn.setOnClickListener {
-            //user_name과 user_email 받아오기
-            var user_name = binding.findPwdNameEdit.text.toString().trim()
-            var user_id = binding.findPwdIdEdit.text.toString().trim()
-            var user_email = binding.findPwdEmailEdit.text.toString().trim()
-            if(!user_id.isEmpty()&&!user_name.isEmpty()&&!user_email.isEmpty()) {
+            //u_name과 u_email 받아오기
+            var u_name = binding.findPwdNameEdit.text.toString().trim()
+            var u_id = binding.findPwdIdEdit.text.toString().trim()
+            var u_email = binding.findPwdEmailEdit.text.toString().trim()
+            if(!u_id.isEmpty()&&!u_name.isEmpty()&&!u_email.isEmpty()) {
                 //response로 가져올 data 선언
                 var responsePW: String? = null
 
                 //Retrofit 통신 - findUserId
-                RetrofitBuilder.api.findUserPW(user_name, user_id, user_email).enqueue(object :
+                RetrofitBuilder.api.findUserPW(u_name, u_id, u_email).enqueue(object :
                     Callback<String> {
                     //request, response 정상 수행
                     override fun onResponse(call: Call<String>, response: Response<String>) {

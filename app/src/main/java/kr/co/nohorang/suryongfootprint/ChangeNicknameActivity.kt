@@ -27,6 +27,8 @@ class ChangeNicknameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val current_user_id:String=intent.getStringExtra("current_user_id").toString()
+        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
             finish()
@@ -94,7 +96,7 @@ class ChangeNicknameActivity : AppCompatActivity() {
         // 확인 버튼 클릭 - 닉네임 변경
         binding.changeBtn.setOnClickListener {
             // user id와 변경할 닉네임 정보 받아오기
-            val userIdData = "Name"//intent로 user_id 받아오기
+            val userIdData:String = current_user_id//intent로 user_id 받아오기
             val nicknameData = binding.editTextTextPersonName3.text.toString().trim()
             var newNickUser = User(userIdData, "", "", "", nicknameData)
 
