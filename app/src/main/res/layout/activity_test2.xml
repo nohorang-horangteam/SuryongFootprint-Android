@@ -15,4 +15,11 @@
         android:text="전체 챌린지 가져오기 테스트"
         android:textSize="11dp" />
 
+    <Button
+        android:id="@+id/uploadPostBtn"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/main_blue"
+        android:text="포스트 올리기 테스트"
+        android:textSize="11dp" />
 </LinearLayout>
