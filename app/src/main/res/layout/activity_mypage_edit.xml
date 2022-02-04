@@ -83,8 +83,9 @@
             android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:ems="10"
+            android:hint="내용을 입력하세요."
             android:inputType="textPersonName"
-            android:text="입력" />
+            android:padding="5dp" />
     </LinearLayout>
 
     <LinearLayout

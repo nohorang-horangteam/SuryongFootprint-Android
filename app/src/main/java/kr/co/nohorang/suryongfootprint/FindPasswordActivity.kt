@@ -33,46 +33,58 @@ class FindPasswordActivity : AppCompatActivity() {
         //비밀번호 찾기
         binding.findPwdConfirmBtn.setOnClickListener {
             //user_name과 user_email 받아오기
-            var user_id = binding.findPwdIdEdit.text.toString()
-            var user_name = binding.findPwdNameEdit.text.toString()
-            var user_email = binding.findPwdEmailEdit.text.toString()
+            var user_name = binding.findPwdNameEdit.text.toString().trim()
+            var user_id = binding.findPwdIdEdit.text.toString().trim()
+            var user_email = binding.findPwdEmailEdit.text.toString().trim()
+            if(!user_id.isEmpty()&&!user_name.isEmpty()&&!user_email.isEmpty()) {
+                //response로 가져올 data 선언
+                var responsePW: String? = null
 
-            //response로 가져올 data 선언
-            var responsePW: String? = null
-
-            //Retrofit 통신 - findUserId
-            RetrofitBuilder.api.findUserPW(user_name, user_id, user_email).enqueue(object :
-                Callback<String> {
-                //request, response 정상 수행
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    responsePW = response.body().toString()
-                    Log.d("FIND_PW_T", "response : " + response.body().toString())
-                    if (responsePW == null) {
-                        Log.d("FIND_PW_T", "status : 사용자 없음.")
-                        Toast.makeText(this@FindPasswordActivity, "잘못된 입력입니다.", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        // 알림창
-                        val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this@FindPasswordActivity)
-                        // 알림창 제목 및 선택지 설정
-                        alertDialogBuilder.setTitle("비밀번호 찾기 완료")
-                        alertDialogBuilder.setMessage(response.body().toString())
-                        // 다이얼로그 생성
-                        val alertDialog: AlertDialog = alertDialogBuilder.create()
-                        // 다이얼로그 보여주기
-                        alertDialog.show()
+                //Retrofit 통신 - findUserId
+                RetrofitBuilder.api.findUserPW(user_name, user_id, user_email).enqueue(object :
+                    Callback<String> {
+                    //request, response 정상 수행
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        responsePW = response.body().toString()
+                        Log.d("FIND_PW_T", "response : " + response.body().toString())
+                        if (responsePW == "null") {
+                            Log.d("FIND_PW_T", "status : 사용자 없음.")
+                            Toast.makeText(
+                                this@FindPasswordActivity,
+                                "잘못된 입력입니다.",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        } else {
+                            // 알림창
+                            val alertDialogBuilder: AlertDialog.Builder =
+                                AlertDialog.Builder(this@FindPasswordActivity)
+                            // 알림창 제목 및 선택지 설정
+                            alertDialogBuilder.setTitle("비밀번호 찾기 완료")
+                            alertDialogBuilder.setMessage(response.body().toString())
+                            // 다이얼로그 생성
+                            val alertDialog: AlertDialog = alertDialogBuilder.create()
+                            // 다이얼로그 보여주기
+                            alertDialog.show()
+                        }
                     }
-                }
 
-                //request, response 실패
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    t.message?.let { Log.e("FIND_PW_F", it) }
-                    Toast.makeText(this@FindPasswordActivity, "오류가 발생하였습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                    finish()
-                }
-            })
-
+                    //request, response 실패
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        t.message?.let { Log.e("FIND_PW_F", it) }
+                        Toast.makeText(
+                            this@FindPasswordActivity,
+                            "오류가 발생하였습니다.",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        finish()
+                    }
+                })
+            }
+            else{
+                Toast.makeText(this,"내용을 모두 입력해주세요",Toast.LENGTH_LONG).show()
+            }
         }
     }
 
