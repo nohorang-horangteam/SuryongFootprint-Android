@@ -29,7 +29,6 @@ class ChallengeViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         current_user_id = intent.getStringExtra("current_user_id").toString()
-        Toast.makeText(this, "유저 아이디" + current_user_id, Toast.LENGTH_LONG).show()
         current_id = current_user_id
 
         // 종료 버튼 앞으로 이동

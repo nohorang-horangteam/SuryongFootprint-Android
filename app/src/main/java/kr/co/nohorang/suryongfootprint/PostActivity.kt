@@ -47,7 +47,6 @@ class PostActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val current_user_id=intent.getStringExtra("current_user_id")
-        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
 
         // 이전 액티비티에서 챌린지 아이디 전달 받기
         val challengeIntent = getIntent()
