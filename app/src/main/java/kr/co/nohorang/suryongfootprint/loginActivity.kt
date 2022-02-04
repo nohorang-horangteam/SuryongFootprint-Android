@@ -69,7 +69,7 @@ class loginActivity : AppCompatActivity() {
                     }
                 })
             } else {
-                Toast.makeText(this@loginActivity, "잘못된 입력입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@loginActivity, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             }
 
         }

@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         // 오늘의 챌린지 텍스트 앞으로 이동
         binding.dailyChallengeText.bringToFront()
-        
+
         // 오늘의 챌린지 버튼 - 액티비티 이동
         binding.dailyChallengeBtn.setOnClickListener {
             val intent = Intent(this, ChallengeActivity::class.java)

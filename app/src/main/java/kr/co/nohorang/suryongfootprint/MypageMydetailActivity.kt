@@ -3,12 +3,12 @@ package com.example.suryongfootprint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.suryongfootprint.databinding.ActivityMypageMainBinding
-import com.example.suryongfootprint.databinding.ActivityMypageMydetailBinding
+import kr.co.nohorang.suryongfootprint.SettingActivity
+import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMydetailBinding
 
 class MypageMydetailActivity : AppCompatActivity() {
+    val binding by lazy { ActivityMypageMydetailBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding = ActivityMypageMydetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
