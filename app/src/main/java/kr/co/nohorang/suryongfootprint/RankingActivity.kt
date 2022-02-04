@@ -14,7 +14,7 @@ class RankingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val current_user_id=intent.getStringExtra("current_user_id")
-        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
+
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
         binding.approvalMenuBtn.setOnClickListener {
             val intent = Intent(this, ApprovalActivity::class.java)

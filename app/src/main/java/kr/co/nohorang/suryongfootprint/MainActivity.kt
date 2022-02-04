@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val current_user_id=intent.getStringExtra("current_user_id")
-        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
+
         // 오늘의 챌린지 텍스트 앞으로 이동
         binding.dailyChallengeText.bringToFront()
         // 오늘의 챌린지 버튼 - 액티비티 이동

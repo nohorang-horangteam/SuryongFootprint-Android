@@ -22,7 +22,6 @@ class FindIdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val current_user_id=intent.getStringExtra("current_user_id")
-        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
             finish()

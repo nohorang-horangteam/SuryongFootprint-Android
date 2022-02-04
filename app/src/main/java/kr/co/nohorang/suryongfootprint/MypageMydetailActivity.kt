@@ -13,7 +13,6 @@ class MypageMydetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val current_user_id=intent.getStringExtra("current_user_id")
-        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
 
 
         //날짜불러오기
