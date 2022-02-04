@@ -65,7 +65,8 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@drawable/round_edge"
-            android:entries="@array/challenges_do" />
+            android:entries="@array/challenges_do"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -143,8 +144,8 @@
         android:minHeight="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/homeMenuBtn"

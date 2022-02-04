@@ -24,7 +24,7 @@ class MypageEditActivity : AppCompatActivity() {
 
         // EditText 입력 중 외부 터치 시 키보드 내리기
         binding.layout.setOnClickListener {
-            hideKeyboard(binding.questionEdit)
+            hideKeyboard(binding.editText)
         }
 
         //확인버튼
