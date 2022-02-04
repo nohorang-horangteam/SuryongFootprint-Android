@@ -1,12 +1,15 @@
 package kr.co.nohorang.suryongfootprint
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View.inflate
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import kr.co.nohorang.suryongfootprint.data.Challenge
+import kr.co.nohorang.suryongfootprint.databinding.ActivityApprovalBinding.inflate
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChallengeViewBinding
 import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
 import retrofit2.Call
@@ -16,12 +19,19 @@ import retrofit2.Response
 class ChallengeViewActivity : AppCompatActivity() {
     val data: MutableList<Challenge> = mutableListOf()
 
+    var current_user_id: String? = null
+    companion object {
+        var current_id: String? = null
+    }
+
     val binding by lazy { ActivityChallengeViewBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val current_user_id:String=intent.getStringExtra("current_user_id").toString()
-        Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
+        current_user_id = intent.getStringExtra("current_user_id").toString()
+        Toast.makeText(this, "유저 아이디" + current_user_id, Toast.LENGTH_LONG).show()
+        current_id = current_user_id
+
         // 종료 버튼 앞으로 이동
         binding.challengeViewExitBtn.bringToFront()
 
@@ -75,7 +85,8 @@ class ChallengeViewActivity : AppCompatActivity() {
                     // 어댑터 연결
                     binding.recycler.adapter = adapter
                     // 레이아웃 매니저 연결
-                    binding.recycler.layoutManager = GridLayoutManager(this@ChallengeViewActivity, 2)
+                    binding.recycler.layoutManager =
+                        GridLayoutManager(this@ChallengeViewActivity, 2)
                 } else {
                     Toast.makeText(
                         this@ChallengeViewActivity,

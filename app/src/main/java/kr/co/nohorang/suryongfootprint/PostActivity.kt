@@ -240,6 +240,8 @@ class PostActivity : BaseActivity() {
         }
     }
 
+
+
     // 키보드 비활성화 함수
     fun hideKeyboard(editText: EditText) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
