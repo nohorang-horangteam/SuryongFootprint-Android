@@ -123,6 +123,5 @@ class Test2Activity : AppCompatActivity() {
                 }
             })
         }
-
     }
 }
