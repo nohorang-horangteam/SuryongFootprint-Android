@@ -37,6 +37,12 @@ class SignUpActivity : AppCompatActivity() {
         binding.layout.setOnClickListener {
             hideKeyboard()
         }
+        binding.scroll.setOnClickListener {
+            hideKeyboard()
+        }
+        binding.linear.setOnClickListener {
+            hideKeyboard()
+        }
 
         // 닉네임 중복 확인 버튼
         binding.nicknameCheckBtn.setOnClickListener {
