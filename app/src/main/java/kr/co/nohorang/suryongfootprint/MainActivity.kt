@@ -33,28 +33,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 인기순 챌린지 버튼(1위 ~ 5위) - 액티비티 이동
-        binding.mainChallengeBtn1.setOnClickListener {
-            val intent = Intent(this, ChallengeActivity::class.java)
-            startActivity(intent)
-        }
-        binding.mainChallengeBtn2.setOnClickListener {
-            val intent = Intent(this, ChallengeActivity::class.java)
-            startActivity(intent)
-        }
-        binding.mainChallengeBtn3.setOnClickListener {
-            val intent = Intent(this, ChallengeActivity::class.java)
-            startActivity(intent)
-        }
-        binding.mainChallengeBtn4.setOnClickListener {
-            val intent = Intent(this, ChallengeActivity::class.java)
-            startActivity(intent)
-        }
-        binding.mainChallengeBtn5.setOnClickListener {
-            val intent = Intent(this, ChallengeActivity::class.java)
-            startActivity(intent)
-        }
-
         // 다른 챌린지 보기 버튼 - 액티비티 이동
         binding.viewMoreChallengeBtn.setOnClickListener {
             val intent = Intent(this, ChallengeViewActivity::class.java)
@@ -124,6 +102,33 @@ class MainActivity : AppCompatActivity() {
                     binding.mainChallengeBtn3.text = data[2].title
                     binding.mainChallengeBtn4.text = data[3].title
                     binding.mainChallengeBtn5.text = data[4].title
+
+                    // 인기순 챌린지 버튼(1위 ~ 5위) - 액티비티 이동
+                    binding.mainChallengeBtn1.setOnClickListener {
+                        val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                        intent.putExtra("challenge", data[0].challenge_id)
+                        startActivity(intent)
+                    }
+                    binding.mainChallengeBtn2.setOnClickListener {
+                        val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                        intent.putExtra("challenge", data[1].challenge_id)
+                        startActivity(intent)
+                    }
+                    binding.mainChallengeBtn3.setOnClickListener {
+                        val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                        intent.putExtra("challenge", data[2].challenge_id)
+                        startActivity(intent)
+                    }
+                    binding.mainChallengeBtn4.setOnClickListener {
+                        val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                        intent.putExtra("challenge", data[3].challenge_id)
+                        startActivity(intent)
+                    }
+                    binding.mainChallengeBtn5.setOnClickListener {
+                        val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                        intent.putExtra("challenge", data[4].challenge_id)
+                        startActivity(intent)
+                    }
                 } else {
                     Toast.makeText(
                         this@MainActivity,
