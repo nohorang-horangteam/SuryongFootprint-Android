@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -21,7 +20,6 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import android.content.DialogInterface
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import kr.co.nohorang.suryongfootprint.data.Post
 import kr.co.nohorang.suryongfootprint.data.PostCreationDTO
 import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
@@ -29,6 +27,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.sql.Blob
 
 
 class PostActivity : BaseActivity() {
@@ -40,6 +39,9 @@ class PostActivity : BaseActivity() {
     val binding by lazy { ActivityPostBinding.inflate(layoutInflater) }
 
     var realUri: Uri? = null
+
+    // 데이터베이스에 저장될 Blob 변수
+    var postImg: Blob? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +69,12 @@ class PostActivity : BaseActivity() {
         binding.postBtn.setOnClickListener {
             //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
             val user_id = "testID"
+            val challenge_id = challengeID
+            val img = postImg
+            val content = binding.postContentEditText.text.toString()
+            val state = 0
 
-            var p_dto = PostCreationDTO("testID",1, realUri,"챌린지 참여합니다~",1)
+            var p_dto = PostCreationDTO(user_id, challenge_id, img, content, state)
 
             //response로 가져올 data 선언
             var responsePost: Post?=null
@@ -85,15 +91,18 @@ class PostActivity : BaseActivity() {
                     Log.d("CREATE_POST_T", "img : " + responsePost?.img.toString())
                     Log.d("CREATE_POST_T", "content : " + responsePost?.content)
                     Log.d("CREATE_POST_T", "state : " + responsePost?.state.toString() )
+
+                    Toast.makeText(this@PostActivity, "인증이 업로드되었습니다.", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
 
                 //request, response 실패
                 override fun onFailure(call: Call<Post>, t: Throwable) {
-                    t.message?.let { Log.e("CREATE_POST_F", it) }
+                    t.message?.let { Log.e("CREATE_POST_F", it)
+                    Toast.makeText(this@PostActivity, "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
-            Toast.makeText(this, "인증이 업로드되었습니다.", Toast.LENGTH_SHORT).show()
-            finish()
         }
 
         binding.imagePreview.setOnClickListener {
@@ -206,20 +215,21 @@ class PostActivity : BaseActivity() {
                         val bitmap = loadBitmap(uri)
                         binding.imagePreview.setImageBitmap(bitmap)
 
-                        // 비트맵 BLOB 형식으로 변환
-                        val stream = ByteArrayOutputStream()
-                        if (bitmap != null) {
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                        }
-                        var blobImg = null
-                        blobImg = stream.toByteArray() as Nothing?
-
-                        realUri = null
+//                        // 비트맵 BLOB 형식으로 변환
+//                        val stream = ByteArrayOutputStream()
+//                        if (bitmap != null) {
+//                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+//                        }
+//                        postImg = stream.toByteArray()
+//                        Log.d("CREATE_POST_T", "img값 : " + postImg.toString())
+//
+//                        realUri = null
                     }
                 }
                 REQ_STORAGE -> {
                     data?.data?.let { uri ->
                         binding.imagePreview.setImageURI(uri)
+//                        postImg = uri
                     }
                 }
             }

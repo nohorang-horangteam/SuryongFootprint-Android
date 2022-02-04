@@ -35,6 +35,7 @@ class ChallengeHolder(val binding: ListitemChallengeBinding): RecyclerView.ViewH
         binding.root.setOnClickListener {
             val intent = Intent(binding.root.context, ChallengeActivity::class.java)
             intent.putExtra("challenge", challenge.challenge_id)
+
             startActivity(binding.root.context, intent, null)
         }
         when (challenge.challenge_id?.rem(4)) {
