@@ -45,24 +45,57 @@ class ChangeNicknameActivity : AppCompatActivity() {
         }
         // 중복 확인 버튼 클릭
         binding.dupeBtn.setOnClickListener {
-//            // 중복인 경우
-//            binding.nicknameStateText.setTextColor(Color.parseColor("#ED5555"))
-//            binding.nicknameStateText.text = "중복된 닉네임입니다."
+            //중복확인 코드
+            var input_nick = binding.editTextTextPersonName3.text.toString().trim()
+            if(!input_nick.isEmpty()){
+                //response로 가져올 data 선언
+                var response_nick: String? = null
 
-            // 중복이 아닌 경우
-            binding.nicknameStateText.setTextColor(Color.parseColor("#ACC236"))
-            binding.nicknameStateText.text = "사용 가능한 닉네임입니다."
+                //Retrofit 통신
+                RetrofitBuilder.api.existUserNickname(input_nick).enqueue(object : Callback<String> {
+                    //request, response 정상 수행
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        response_nick = response.body().toString()
+                        Log.d("FIND_ID_T", "response : " + response.body().toString())
+                        if (response_nick == input_nick) {
+                            Log.d("FIND_ID_T", "status : 사용 불가능 닉네임")
+                            binding.nicknameStateText.setTextColor(Color.parseColor("#ED5555"))
+                            binding.nicknameStateText.text = "중복된 닉네임입니다."
+                            isFine = false
+                            binding.changeBtn.isEnabled = false
+                            binding.changeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+                        } else  {
+                            Log.d("FIND_ID_T", "status : 사용 가능 닉네임")
+                            binding.nicknameStateText.setTextColor(Color.parseColor("#ACC236"))
+                            binding.nicknameStateText.text = "사용 가능한 닉네임입니다."
 
-            isFine = true
-            binding.changeBtn.isEnabled = true
-            binding.changeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
+                            isFine = true
+                            binding.changeBtn.isEnabled = true
+                            binding.changeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
+                        }
+                    }
+
+                    //request, response 실패
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        t.message?.let { Log.e("FIND_ID_F", it) }
+                    }
+                })
+            }
+            else{
+                isFine = false
+                binding.changeBtn.isEnabled = false
+                binding.changeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+                binding.nicknameStateText.setTextColor(android.graphics.Color.parseColor("#ED5555"))
+                binding.nicknameStateText.text = "내용을 입력해주세요."
+
+            }
         }
 
-        // 확인 버튼 클릭 - 닉네임 변경 (+ 중복 확인 여부)
+        // 확인 버튼 클릭 - 닉네임 변경
         binding.changeBtn.setOnClickListener {
             // user id와 변경할 닉네임 정보 받아오기
-            val userIdData = "Name"
-            val nicknameData = binding.editTextTextPersonName3.text.toString()
+            val userIdData = "Name"//intent로 user_id 받아오기
+            val nicknameData = binding.editTextTextPersonName3.text.toString().trim()
             var newNickUser = User(userIdData, "", "", "", nicknameData)
 
             //response로 가져올 data 선언

@@ -74,17 +74,14 @@ class loginActivity : AppCompatActivity() {
 
         }
         binding.loginFindIdBtn.setOnClickListener {
-            Log.d("clicktest", "click findid suc")
             val intent = Intent(this, FindIdActivity::class.java)
             startActivity(intent)
         }
         binding.loginFindPasswordBtn.setOnClickListener {
-            Log.d("clicktest", "click findpassword suc")
             val intent = Intent(this, FindPasswordActivity::class.java)
             startActivity(intent)
         }
         binding.loginSignupBtn.setOnClickListener {
-            Log.d("clicktest", "click signup suc")
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
