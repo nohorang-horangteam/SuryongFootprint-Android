@@ -3,7 +3,6 @@ package kr.co.nohorang.suryongfootprint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivityRankingBinding
 
 class RankingActivity : AppCompatActivity() {

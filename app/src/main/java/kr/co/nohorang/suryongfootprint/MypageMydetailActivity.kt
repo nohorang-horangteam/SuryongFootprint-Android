@@ -3,8 +3,8 @@ package com.example.suryongfootprint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.suryongfootprint.databinding.ActivityMypageMainBinding
-import com.example.suryongfootprint.databinding.ActivityMypageMydetailBinding
+import android.widget.Toast
+import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMydetailBinding
 
 class MypageMydetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,18 +12,23 @@ class MypageMydetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        //날짜불러오기
+
         //수정하기 버튼
         binding.confirm.setOnClickListener() {
-            val intent = Intent(this, SettingActivity::class.java)
+            //수정페이지로
+            val intent = Intent(this, MypageEditActivity::class.java)
             startActivity(intent)
-            //글 수정하기
+
+            Toast.makeText(this, "수정되었습니다.", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         //삭제하기 버튼
         binding.delete.setOnClickListener() {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
-            //글 삭제하기
+            Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+            finish()
+            //서버에서 글 삭제
         }
     }
 }

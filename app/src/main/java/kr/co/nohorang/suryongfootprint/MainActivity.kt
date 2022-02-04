@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
-import kr.co.nohorang.suryongfootprint.databinding.ActivityPostBinding
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }

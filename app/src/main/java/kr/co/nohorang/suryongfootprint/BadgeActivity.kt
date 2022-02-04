@@ -2,8 +2,7 @@ package com.example.suryongfootprint
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.suryongfootprint.databinding.ActivityBadgeBinding
-import com.example.suryongfootprint.databinding.ActivityMypageMainBinding
+import kr.co.nohorang.suryongfootprint.databinding.ActivityBadgeBinding
 
 class BadgeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

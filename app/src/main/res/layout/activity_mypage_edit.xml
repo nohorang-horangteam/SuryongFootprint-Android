@@ -18,6 +18,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/back_icon" />
+
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
@@ -99,4 +105,5 @@
             app:layout_constraintVertical_bias="0.387" />
 
     </LinearLayout>
+
 </LinearLayout>
