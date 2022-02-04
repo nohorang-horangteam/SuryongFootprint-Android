@@ -25,7 +25,7 @@ class Test2Activity : AppCompatActivity() {
                 //request, response 정상 수행
                 override fun onResponse(call: Call<List<Challenge>>, response: Response<List<Challenge>>) {
                     //전체 챌린지 받아오기
-                    var all_challenges : List<Challenge> = arrayListOf<Challenge>()
+                    var all_challenges : List<Challenge>? = arrayListOf<Challenge>()
                     all_challenges = response.body()
                     Log.d("GET_CH_T", "response : " + all_challenges?.toString())
                 }

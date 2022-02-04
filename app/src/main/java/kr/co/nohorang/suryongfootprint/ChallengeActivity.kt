@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChallengeBinding
-import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
 
 class ChallengeActivity : AppCompatActivity() {
     val binding by lazy { ActivityChallengeBinding.inflate(layoutInflater) }
