@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import kr.co.nohorang.suryongfootprint.data.User
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChangeNicknameBinding
 import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
@@ -19,7 +20,7 @@ import retrofit2.Response
 class ChangeNicknameActivity : AppCompatActivity() {
 
     // 중복 여부
-    var isDupe: Boolean = true
+    var isFine: Boolean = false
 
     val binding by lazy { ActivityChangeNicknameBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,18 +36,24 @@ class ChangeNicknameActivity : AppCompatActivity() {
         binding.layout.setOnClickListener {
             hideKeyboard(binding.editTextTextPersonName3)
         }
-
+        binding.editTextTextPersonName3.addTextChangedListener { //editText에 글자가 입력되면 중복확인 변수 false으로 초기화
+            isFine=false
+            binding.changeBtn.isEnabled = false
+            binding.changeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+            binding.nicknameStateText.setTextColor(Color.parseColor("#ED5555"))
+            binding.nicknameStateText.setText("중복 확인을 해주세요")
+        }
         // 중복 확인 버튼 클릭
         binding.dupeBtn.setOnClickListener {
-            binding.nicknameStateText.visibility = View.VISIBLE
 //            // 중복인 경우
-//            binding.nicknameStateText.text = "중복된 닉네임입니다."
 //            binding.nicknameStateText.setTextColor(Color.parseColor("#ED5555"))
+//            binding.nicknameStateText.text = "중복된 닉네임입니다."
 
             // 중복이 아닌 경우
-            binding.nicknameStateText.text = "사용 가능한 닉네임입니다."
             binding.nicknameStateText.setTextColor(Color.parseColor("#ACC236"))
-            isDupe = false
+            binding.nicknameStateText.text = "사용 가능한 닉네임입니다."
+
+            isFine = true
             binding.changeBtn.isEnabled = true
             binding.changeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
         }
