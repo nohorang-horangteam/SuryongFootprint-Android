@@ -7,8 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+<<<<<<< HEAD
 import android.widget.Button
 import androidx.annotation.RequiresApi
+=======
+import android.widget.Toast
+import kr.co.nohorang.suryongfootprint.BadgeActivity
+import kr.co.nohorang.suryongfootprint.SettingActivity
+
+>>>>>>> ca1b2713a918db50caba4e36fda47440c856de45
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMainBinding
 
 class MypageMainActivity : AppCompatActivity() {
@@ -18,12 +25,18 @@ class MypageMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val current_user_id=intent.getStringExtra("current_user_id")
+
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
         binding.homeMenuBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+<<<<<<< HEAD
+=======
+            intent.putExtra("current_user_id", current_user_id)
+>>>>>>> ca1b2713a918db50caba4e36fda47440c856de45
             startActivity(intent)
         }
         binding.approvalMenuBtn.setOnClickListener {
@@ -31,6 +44,7 @@ class MypageMainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
@@ -39,17 +53,20 @@ class MypageMainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         //세팅 버튼
         binding.settingBtn.setOnClickListener() {
             val intent = Intent(this, SettingActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
         //뱃지 버튼
         binding.badgeBtn.setOnClickListener() {
             val intent = Intent(this, BadgeActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
@@ -108,5 +125,19 @@ class MypageMainActivity : AppCompatActivity() {
         button3.setOnClickListener {
             button3.setBackgroundColor(color)
         }
+        //완료한 챌린지 불러오는거 연결 필요
+//        binding.dropdown.adapter = adapter
+//        binding.dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//                //발자국 불러오기
+//            }
+//
+//            //완료전 승인대기 완료 버튼
+//        }
     }
 }

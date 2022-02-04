@@ -13,7 +13,7 @@ class ApprovalDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        val current_user_id=intent.getStringExtra("current_user_id")
         // 테스트용 참여 데이터 생성
         val data:MutableList<TestPost> = loadTestPostData()
         // 어댑터 생성 후 데이터 저장

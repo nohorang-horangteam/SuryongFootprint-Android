@@ -18,7 +18,7 @@ class ChallengeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        val current_user_id=intent.getStringExtra("current_user_id")
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
             finish()
@@ -52,6 +52,7 @@ class ChallengeActivity : AppCompatActivity() {
                             binding.postBtn.setOnClickListener {
                                 val intent = Intent(this@ChallengeActivity, PostActivity::class.java)
                                 intent.putExtra("challenge", challenge.challenge_id)
+                                intent.putExtra("current_user_id", current_user_id)
                                 startActivity(intent)
                             }
                         }

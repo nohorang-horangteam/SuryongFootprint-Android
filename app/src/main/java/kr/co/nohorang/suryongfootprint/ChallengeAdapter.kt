@@ -3,15 +3,18 @@ package kr.co.nohorang.suryongfootprint
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_challenge_view.view.*
+import kotlinx.android.synthetic.main.listitem_challenge.view.*
+import kr.co.nohorang.suryongfootprint.ChallengeViewActivity.Companion.current_id
 import kr.co.nohorang.suryongfootprint.data.Challenge
 import kr.co.nohorang.suryongfootprint.databinding.ListitemChallengeBinding
 
 class ChallengeAdapter: RecyclerView.Adapter<ChallengeHolder>() {
-    // 실제 데이터로 변환 필요
     var listData = mutableListOf<Challenge>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeHolder {
@@ -35,6 +38,8 @@ class ChallengeHolder(val binding: ListitemChallengeBinding): RecyclerView.ViewH
         binding.root.setOnClickListener {
             val intent = Intent(binding.root.context, ChallengeActivity::class.java)
             intent.putExtra("challenge", challenge.challenge_id)
+            val userId = current_id
+            intent.putExtra("current_user_id", userId)
             startActivity(binding.root.context, intent, null)
         }
         when (challenge.challenge_id?.rem(4)) {

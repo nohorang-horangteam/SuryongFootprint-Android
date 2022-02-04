@@ -12,7 +12,6 @@ import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.core.widget.addTextChangedListener
 import kr.co.nohorang.suryongfootprint.data.User
-import kr.co.nohorang.suryongfootprint.databinding.ActivityChangeNicknameBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChangePasswordBinding
 import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
 import retrofit2.Call
@@ -29,7 +28,7 @@ class ChangePasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        val current_user_id:String=intent.getStringExtra("current_user_id").toString()
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
             finish()
@@ -122,7 +121,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         // 확인 버튼 클릭 - 닉네임 변경 (+ 중복 확인 여부)
         binding.pwdChangeBtn.setOnClickListener {
             //user id와 변경할 pw 정보 받아오기
-            val userIdData = "Name"  // 현재 접속중인 회원 아이디 필요.
+            val userIdData:String = current_user_id  // 현재 접속중인 회원 아이디 필요.
             val userPwdData = binding.newPwdEdit1.text.toString().trim()
             var newNickUser = User(userIdData, "", userPwdData, "", "")
 

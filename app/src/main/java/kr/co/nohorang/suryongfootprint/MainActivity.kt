@@ -15,6 +15,7 @@ import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     val data: MutableList<Challenge> = mutableListOf()
@@ -23,19 +24,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val current_user_id=intent.getStringExtra("current_user_id")
 
         // 오늘의 챌린지 텍스트 앞으로 이동
         binding.dailyChallengeText.bringToFront()
-
         // 오늘의 챌린지 버튼 - 액티비티 이동
         binding.dailyChallengeBtn.setOnClickListener {
             val intent = Intent(this, ChallengeActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
         // 다른 챌린지 보기 버튼 - 액티비티 이동
         binding.viewMoreChallengeBtn.setOnClickListener {
             val intent = Intent(this, ChallengeViewActivity::class.java)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.rankingMenuBtn.setOnClickListener {
@@ -52,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
         binding.mypageMenuBtn.setOnClickListener {
@@ -59,6 +64,7 @@ class MainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
 
@@ -103,30 +109,47 @@ class MainActivity : AppCompatActivity() {
                     binding.mainChallengeBtn4.text = data[3].title
                     binding.mainChallengeBtn5.text = data[4].title
 
+                    val challengeCount = data.size
+                    val calendar: Calendar = Calendar.getInstance()
+                    val today = calendar.get(Calendar.DAY_OF_MONTH)
+                    val daily = today % challengeCount
+                    binding.dailyChallengeText.text = data[daily].title?.replace("\n", " ") + "!\n함께 참여해볼까요?"
+                    binding.dailyChallengeBtn.setOnClickListener {
+                        val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                        intent.putExtra("challenge", data[daily].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
+                        startActivity(intent)
+                    }
+
                     // 인기순 챌린지 버튼(1위 ~ 5위) - 액티비티 이동
                     binding.mainChallengeBtn1.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[0].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn2.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[1].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn3.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[2].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn4.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[3].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                     binding.mainChallengeBtn5.setOnClickListener {
                         val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
                         intent.putExtra("challenge", data[4].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
                         startActivity(intent)
                     }
                 } else {

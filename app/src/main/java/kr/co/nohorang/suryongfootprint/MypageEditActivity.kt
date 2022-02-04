@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
@@ -17,6 +18,8 @@ class MypageEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val current_user_id=intent.getStringExtra("current_user_id")
+
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
             finish()
@@ -24,7 +27,7 @@ class MypageEditActivity : AppCompatActivity() {
 
         // EditText 입력 중 외부 터치 시 키보드 내리기
         binding.layout.setOnClickListener {
-            hideKeyboard(binding.questionEdit)
+            hideKeyboard(binding.editText)
         }
 
         //확인버튼
