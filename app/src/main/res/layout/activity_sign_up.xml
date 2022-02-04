@@ -116,10 +116,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="사용 불가능한 닉네임입니다."
+                    android:text="중복 확인을 해주세요"
                     android:textColor="@color/main_red"
                     android:textSize="13sp"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
 
                 <Button
                     android:id="@+id/nicknameCheckBtn"
@@ -177,10 +177,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="사용 불가능한 아이디입니다."
+                    android:text="중복 확인을 해주세요"
                     android:textColor="@color/main_red"
                     android:textSize="13sp"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
 
                 <Button
                     android:id="@+id/idCheckBtn"
@@ -238,10 +238,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="사용 불가능한 이메일입니다."
+                    android:text="중복 확인을 해주세요"
                     android:textColor="@color/main_red"
                     android:textSize="13sp"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
 
                 <Button
                     android:id="@+id/emailCheckBtn"

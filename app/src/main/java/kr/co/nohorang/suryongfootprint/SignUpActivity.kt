@@ -19,7 +19,7 @@ import retrofit2.Response
 class SignUpActivity : AppCompatActivity() {
 
     var isNicknameFine: Boolean = false
-    var isIdfine: Boolean = false
+    var isIdFine: Boolean = false
     var isEmailFine: Boolean = false
     var isPasswordFine: Boolean = false
 
@@ -27,6 +27,41 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.signupNicknameText.addTextChangedListener { //editText에 글자가 입력되면 중복확인 변수 0으로 초기화
+            isNicknameFine=false
+            binding.nicknameCheckText.setTextColor(Color.parseColor("#ED5555"))
+            binding.nicknameCheckText.setText("중복 확인을 해주세요")
+        }
+        binding.signupIdText.addTextChangedListener {
+            isIdFine=false
+            binding.nicknameCheckText.setTextColor(Color.parseColor("#ED5555"))
+            binding.idCheckText.setText("중복 확인을 해주세요")
+        }
+        binding.signupEmailText.addTextChangedListener {
+            isEmailFine=false
+            binding.nicknameCheckText.setTextColor(Color.parseColor("#ED5555"))
+            binding.emailCheckText.setText("중복 확인을 해주세요")
+        }
+
+
+        binding.nicknameCheckBtn.setOnClickListener { //중복 확인 버튼 누를 시 쿼리문 실행, 결과에 따라 CheckResult 문장 변화, 색
+            //쿼리문
+            binding.nicknameCheckText.setTextColor(Color.parseColor("#ACC236"))
+            binding.nicknameCheckText.setText("사용 가능한 닉네임입니다.")
+            isNicknameFine=true
+        }
+        binding.idCheckBtn.setOnClickListener { //중복 확인 버튼 누를 시 쿼리문 실행
+            //쿼리문
+            binding.idCheckText.setTextColor(Color.parseColor("#ACC236"))
+            binding.idCheckText.setText("사용 가능한 아이디입니다.")
+            isIdFine=true
+        }
+        binding.emailCheckBtn.setOnClickListener { //중복 확인 버튼 누를 시 쿼리문 실행
+            //쿼리문
+            binding.emailCheckText.setTextColor(Color.parseColor("#ACC236"))
+            binding.emailCheckText.setText("사용 가능한 이메일입니다.")
+            isEmailFine=true
+        }
 
         // 툴바 뒤로가기 버튼 - 액티비티 종료
         binding.backBtn.setOnClickListener {
@@ -44,45 +79,6 @@ class SignUpActivity : AppCompatActivity() {
             hideKeyboard()
         }
 
-        // 닉네임 중복 확인 버튼
-        binding.nicknameCheckBtn.setOnClickListener {
-            binding.nicknameCheckText.visibility = View.VISIBLE
-            // 중복인 경우
-//            binding.nicknameCheckText.setTextColor(Color.parseColor("#ED5555"))
-//            binding.nicknameCheckText.text = "중복된 닉네임입니다."
-
-            // 중복이 아닌 경우
-            binding.nicknameCheckText.setTextColor(Color.parseColor("#ACC236"))
-            binding.nicknameCheckText.text = "사용 가능한 닉네임입니다."
-            isNicknameFine = true
-        }
-
-        // 아이디 중복 확인 버튼
-        binding.idCheckBtn.setOnClickListener {
-            binding.idCheckText.visibility = View.VISIBLE
-            // 중복인 경우
-//            binding.idCheckText.setTextColor(Color.parseColor("#ED5555"))
-//            binding.idCheckText.text = "중복된 아이디입니다."
-
-            // 중복이 아닌 경우
-            binding.idCheckText.setTextColor(Color.parseColor("#ACC236"))
-            binding.idCheckText.text = "사용 가능한 아이디입니다."
-            isIdfine = true
-        }
-
-        // 이메일 중복 확인 버튼
-        binding.emailCheckBtn.setOnClickListener {
-            binding.emailCheckText.visibility = View.VISIBLE
-            // 중복인 경우
-//            binding.emailCheckText.setTextColor(Color.parseColor("#ED5555"))
-//            binding.emailCheckText.text = "중복된 이메일입니다."
-
-            // 중복이 아닌 경우
-            binding.emailCheckText.setTextColor(Color.parseColor("#ACC236"))
-            binding.emailCheckText.text = "사용 가능한 이메일입니다."
-            isEmailFine = true
-        }
-
         // 회원가입 테스트
         binding.signupBtn.setOnClickListener {
             //request로 전송할(회원가입할) user 정보 받아오기(id, email, pw, name, nickname)
@@ -94,7 +90,7 @@ class SignUpActivity : AppCompatActivity() {
             if (!id.isEmpty() && !email.isEmpty() && !pw.isEmpty() && !name.isEmpty() && !nickname.isEmpty())//회원가입 시도
             {
                 isPasswordFine = binding.signupPasswordText.text.toString() == binding.signupRePasswordText.text.toString()
-                if (isNicknameFine && isIdfine && isEmailFine && isPasswordFine) {
+                if (isNicknameFine && isIdFine && isEmailFine && isPasswordFine) {
                     var newUser = User(id, email, pw, name, nickname)
 
                     //response로 가져올 data 선언
