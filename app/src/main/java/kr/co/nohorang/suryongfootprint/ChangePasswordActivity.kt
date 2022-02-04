@@ -21,6 +21,7 @@ class ChangePasswordActivity : AppCompatActivity() {
     // 비밀번호 확인 여부
     var isOldFine: Boolean = false
     var isNewFine: Boolean = false
+    var isPasswordFine: Boolean = false
 
     val binding by lazy { ActivityChangePasswordBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +41,11 @@ class ChangePasswordActivity : AppCompatActivity() {
         // 기존 비밀번호 확인 버튼 클릭
         binding.confirmBtn1.setOnClickListener {
             binding.oldStateText.visibility = View.VISIBLE
+
 //            // 잘못된 입력인 경우
 //            binding.oldStateText.text = "잘못된 비밀번호입니다."
 //            binding.oldStateText.setTextColor(Color.parseColor("#ED5555"))
+//            isOldFine = false
 
             // 올바른 입력인 경우
             binding.oldStateText.text = "사용 가능한 닉네임입니다."
@@ -57,14 +60,18 @@ class ChangePasswordActivity : AppCompatActivity() {
         // 새 비밀번호 확인 버튼 클릭
         binding.confirmBtn2.setOnClickListener {
             binding.newStateText.visibility = View.VISIBLE
-//            // 잘못된 입력인 경우
-//            binding.newStateText.text = "잘못된 비밀번호입니다."
-//            binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
 
-            // 올바른 입력인 경우
-            binding.newStateText.text = "사용 가능한 닉네임입니다."
-            binding.newStateText.setTextColor(Color.parseColor("#ACC236"))
-            isNewFine = true
+            if (binding.newPwdEdit1.text.toString() != binding.newPwdEdit2.text.toString()) {
+                // 잘못된 입력인 경우
+                binding.newStateText.text = "잘못된 비밀번호입니다."
+                binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
+                isNewFine = false
+            } else {
+                // 올바른 입력인 경우
+                binding.newStateText.text = "사용 가능한 닉네임입니다."
+                binding.newStateText.setTextColor(Color.parseColor("#ACC236"))
+                isNewFine = true
+            }
             if (isOldFine && isNewFine) {
                 binding.pwdChangeBtn.isEnabled = true
                 binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#537BC4"))
