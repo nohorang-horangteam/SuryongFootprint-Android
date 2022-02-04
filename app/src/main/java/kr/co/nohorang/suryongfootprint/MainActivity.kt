@@ -15,6 +15,7 @@ import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     val data: MutableList<Challenge> = mutableListOf()
@@ -107,6 +108,18 @@ class MainActivity : AppCompatActivity() {
                     binding.mainChallengeBtn3.text = data[2].title
                     binding.mainChallengeBtn4.text = data[3].title
                     binding.mainChallengeBtn5.text = data[4].title
+
+                    val challengeCount = data.size
+                    val calendar: Calendar = Calendar.getInstance()
+                    val today = calendar.get(Calendar.DAY_OF_MONTH)
+                    val daily = today % challengeCount
+                    binding.dailyChallengeText.text = data[daily].title?.replace("\n", " ") + "!\n함께 참여해볼까요?"
+                    binding.dailyChallengeBtn.setOnClickListener {
+                        val intent = Intent(this@MainActivity, ChallengeActivity::class.java)
+                        intent.putExtra("challenge", data[daily].challenge_id)
+                        intent.putExtra("current_user_id", current_user_id)
+                        startActivity(intent)
+                    }
 
                     // 인기순 챌린지 버튼(1위 ~ 5위) - 액티비티 이동
                     binding.mainChallengeBtn1.setOnClickListener {
