@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import kr.co.nohorang.suryongfootprint.data.User
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChangeNicknameBinding
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChangePasswordBinding
@@ -37,10 +38,30 @@ class ChangePasswordActivity : AppCompatActivity() {
         binding.layout.setOnClickListener {
             hideKeyboard()
         }
+        binding.oldPwdEdit.addTextChangedListener { //editText에 글자가 입력되면 변수 false으로 초기화
+            isOldFine=false
+            binding.pwdChangeBtn.isEnabled = false
+            binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+            binding.oldStateText.setTextColor(Color.parseColor("#ED5555"))
+            binding.oldStateText.setText("확인 버튼을 눌러 주세요.")
+        }
+        binding.newPwdEdit1.addTextChangedListener {
+            isNewFine=false
+            binding.pwdChangeBtn.isEnabled = false
+            binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+            binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
+            binding.newStateText.setText("확인 버튼을 눌러 주세요.")
+        }
+        binding.newPwdEdit2.addTextChangedListener {
+            isNewFine=false
+            binding.pwdChangeBtn.isEnabled = false
+            binding.pwdChangeBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
+            binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
+            binding.newStateText.setText("확인 버튼을 눌러 주세요.")
+        }
 
         // 기존 비밀번호 확인 버튼 클릭
         binding.confirmBtn1.setOnClickListener {
-            binding.oldStateText.visibility = View.VISIBLE
 
 //            // 잘못된 입력인 경우
 //            binding.oldStateText.text = "잘못된 비밀번호입니다."
@@ -48,7 +69,7 @@ class ChangePasswordActivity : AppCompatActivity() {
 //            isOldFine = false
 
             // 올바른 입력인 경우
-            binding.oldStateText.text = "사용 가능한 닉네임입니다."
+            binding.oldStateText.text = "잘못된 입력입니다."
             binding.oldStateText.setTextColor(Color.parseColor("#ACC236"))
             isOldFine = true
             if (isOldFine && isNewFine) {
@@ -59,16 +80,15 @@ class ChangePasswordActivity : AppCompatActivity() {
 
         // 새 비밀번호 확인 버튼 클릭
         binding.confirmBtn2.setOnClickListener {
-            binding.newStateText.visibility = View.VISIBLE
 
-            if (binding.newPwdEdit1.text.toString() != binding.newPwdEdit2.text.toString()) {
+            if (binding.newPwdEdit1.text.trim().toString() != binding.newPwdEdit2.text.toString()) {
                 // 잘못된 입력인 경우
-                binding.newStateText.text = "잘못된 비밀번호입니다."
+                binding.newStateText.text = "잘못된 입력입니다."
                 binding.newStateText.setTextColor(Color.parseColor("#ED5555"))
                 isNewFine = false
             } else {
                 // 올바른 입력인 경우
-                binding.newStateText.text = "사용 가능한 닉네임입니다."
+                binding.newStateText.text = "비밀번호가 일치합니다."
                 binding.newStateText.setTextColor(Color.parseColor("#ACC236"))
                 isNewFine = true
             }
