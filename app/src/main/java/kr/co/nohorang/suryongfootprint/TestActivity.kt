@@ -46,7 +46,7 @@ class TestActivity : AppCompatActivity() {
         // 로그인 테스트
         binding.LoginTestBtn.setOnClickListener{
             //request로 전송할(회원가입할) user 정보 받아오기
-            var loginInfo = LoginRequestDTO("test_id123", "1234123@")
+            var loginInfo = LoginRequestDTO("flora", "1111")
 
             //response로 가져올 data 선언
             var responseUser: User?=null
