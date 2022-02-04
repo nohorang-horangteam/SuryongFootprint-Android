@@ -54,7 +54,6 @@ class SettingActivity : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.putExtra("current_user_id", current_user_id)
                 startActivity(intent)
             }
             alertDialogBuilder.setNegativeButton("아니오") {dialogInterface: DialogInterface, i:Int ->

@@ -10,11 +10,18 @@ import kr.co.nohorang.suryongfootprint.databinding.ActivityApprovalBinding
 
 class ApprovalActivity : AppCompatActivity() {
     val binding by lazy { ActivityApprovalBinding.inflate(layoutInflater) }
+
+    companion object {
+        var current_id2: String? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val current_user_id=intent.getStringExtra("current_user_id")
         Toast.makeText(this,"유저 아이디"+current_user_id,Toast.LENGTH_LONG).show()
+        current_id2 = current_user_id
+
         // 테스트용 챌린지 데이터 생성
         val data:MutableList<TestCount> = loadTestCountData()
         // 어댑터 생성 후 데이터 저장
