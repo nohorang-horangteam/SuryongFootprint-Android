@@ -45,4 +45,16 @@ interface UserService {
     //회원 탈퇴
     @DELETE("/s-footprint/user/{user_id}")
     fun deleteUser(@Path("user_id") user_id:String):Call<Void>
+
+    //아이디 중복 조회
+    @GET("/s-footprint/user/available/id")
+    fun existUserId(@Query("user_id") user_id:String):Call<String>
+
+    //이메일 중복 조회
+    @GET("/s-footprint/user/available/email")
+    fun existUserEmail(@Query("user_email") user_email:String):Call<String>
+
+    //닉네임 중복 조회
+    @GET("/s-footprint/user/available/nickname")
+    fun existUserNickname(@Query("user_nickname") user_nickname:String):Call<String>
 }

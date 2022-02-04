@@ -22,3 +22,8 @@ data class PostCreationDTO(
                            @SerializedName("content")var content:String?,
                            @SerializedName("state")var state:Int?
 ):Serializable{}
+
+data class PostUpdateDTO(
+    @SerializedName("content")var content:String?,
+    @SerializedName("state")var state:Int?
+):Serializable{}

@@ -22,7 +22,8 @@ class Test2Activity : AppCompatActivity() {
         // 전체 챌린지 받아오기 테스트
         binding.getChallengeBtn.setOnClickListener {
             //Retrofit 통신 - getChallenges
-            RetrofitBuilder.challenge_api.getChallenges().enqueue(object : Callback<List<Challenge>> {
+            RetrofitBuilder.challenge_api.getChallenges()
+                .enqueue(object : Callback<List<Challenge>> {
                     //request, response 정상 수행
                     override fun onResponse(
                         call: Call<List<Challenge>>,
@@ -52,12 +53,14 @@ class Test2Activity : AppCompatActivity() {
 
                     //request, response 실패
                     override fun onFailure(call: Call<List<Challenge>>, t: Throwable) {
-                        t.message?.let { Log.e("GET_CH_F", it)
-                        Log.d("GET_CH_T", "챌린지 정보 가져오기 실패")
+                        t.message?.let {
+                            Log.e("GET_CH_F", it)
+                            Log.d("GET_CH_T", "챌린지 정보 가져오기 실패")
                         }
                     }
                 })
         }
+
 
 //        // 챌린지 참여하기(포스트 올리기) 테스트
 //        binding.uploadPostBtn.setOnClickListener {
@@ -117,11 +120,103 @@ class Test2Activity : AppCompatActivity() {
 
                 //request, response 실패
                 override fun onFailure(call: Call<List<Count>>, t: Throwable) {
-                    t.message?.let { Log.e("GET_CH_F", it)
+                    t.message?.let {
+                        Log.e("GET_CH_F", it)
                         Log.d("GET_CH_T", "챌린지 정보 가져오기 실패")
                     }
                 }
             })
         }
+
+        //아이디 중복 조회
+        binding.AvailableIdBtn.setOnClickListener {
+            //input id 받아오기
+            var input_id = "1234"
+
+            //response로 가져올 data 선언
+            var response_id: String? = null
+
+            //Retrofit 통신
+            RetrofitBuilder.api.existUserId(input_id).enqueue(object : Callback<String> {
+                //request, response 정상 수행
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    response_id = response.body().toString()
+                    Log.d("FIND_ID_T", "response : " + response.body().toString())
+                    if (response_id == input_id) {//input 아이디와 같은 아이디가 존재
+                        Log.d("FIND_ID_T", "status : 사용 불가능 아이디")
+                    } else{
+                        Log.d("FIND_ID_T", "status : 사용 가능 아이디")
+                    }
+                }
+
+                //request, response 실패
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    t.message?.let { Log.e("FIND_ID_F", it) }
+                }
+            })
+
+
+
+        }
+
+        //이메일 중복 조회
+        binding.AvailableEmailBtn.setOnClickListener {
+            //input id 받아오기
+            var input_email = "coco"
+
+            //response로 가져올 data 선언
+            var response_email: String? = null
+
+            //Retrofit 통신
+            RetrofitBuilder.api.existUserEmail(input_email).enqueue(object : Callback<String> {
+                //request, response 정상 수행
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    response_email = response.body().toString()
+                    Log.d("FIND_ID_T", "response : " + response.body().toString())
+                    if (response_email == input_email) {
+                        Log.d("FIND_ID_T", "status : 사용 불가능 이메일")
+                    } else {
+                        Log.d("FIND_ID_T", "status : 사용 가능 이메일")
+
+                    }
+                }
+
+                //request, response 실패
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    t.message?.let { Log.e("FIND_ID_F", it) }
+                }
+            })
+
+        }
+
+        //닉네임 중복 조회
+        binding.AvailableNickBtn.setOnClickListener {
+            //input id 받아오기
+            var input_nick = "coco"
+
+            //response로 가져올 data 선언
+            var response_nick: String? = null
+
+            //Retrofit 통신
+            RetrofitBuilder.api.existUserNickname(input_nick).enqueue(object : Callback<String> {
+                //request, response 정상 수행
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    response_nick = response.body().toString()
+                    Log.d("FIND_ID_T", "response : " + response.body().toString())
+                    if (response_nick == input_nick) {
+                        Log.d("FIND_ID_T", "status : 사용 불가능 닉네임")
+                    } else  {
+                        Log.d("FIND_ID_T", "status : 사용 가능 닉네임")
+                    }
+                }
+
+                //request, response 실패
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    t.message?.let { Log.e("FIND_ID_F", it) }
+                }
+            })
+
+        }
+
     }
 }
