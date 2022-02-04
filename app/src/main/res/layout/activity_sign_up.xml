@@ -75,7 +75,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/nicknameCheckResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
@@ -96,7 +96,7 @@
                     android:textSize="11dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.037"
-                    app:layout_constraintStart_toEndOf="@+id/textView11"
+                    app:layout_constraintStart_toEndOf="@+id/nicknameCheckResult"
                     app:layout_constraintTop_toBottomOf="@+id/signupNicknameText" />
 
                 <TextView
@@ -128,7 +128,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/nicknameCheckBtn" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/idCheckResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
@@ -149,7 +149,7 @@
                     android:textSize="11dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView14"
+                    app:layout_constraintStart_toEndOf="@+id/idCheckResult"
                     app:layout_constraintTop_toBottomOf="@+id/signupIdText" />
 
                 <TextView
@@ -181,7 +181,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/idCheckBtn" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/emailCheckResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
@@ -201,7 +201,7 @@
                     android:textSize="11dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.037"
-                    app:layout_constraintStart_toEndOf="@+id/textView12"
+                    app:layout_constraintStart_toEndOf="@+id/emailCheckResult"
                     app:layout_constraintTop_toBottomOf="@+id/signupEmailText" />
 
                 <TextView
