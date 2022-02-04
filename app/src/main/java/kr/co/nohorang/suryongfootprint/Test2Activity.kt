@@ -14,6 +14,7 @@ import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Blob
 
 class Test2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +65,7 @@ class Test2Activity : AppCompatActivity() {
 //        // 챌린지 참여하기(포스트 올리기) 테스트
 //        binding.uploadPostBtn.setOnClickListener {
 //            //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
-//            var p_dto = PostCreationDTO("","","","","")
+//            var p_dto = PostCreationDTO("testUser",1, "blob 값","챌린지 참여합니다~",0)
 //
 //            //response로 가져올 data 선언
 //            var responsePost: Post?=null

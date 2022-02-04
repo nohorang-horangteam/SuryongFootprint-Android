@@ -68,6 +68,7 @@ class ChallengeViewActivity : AppCompatActivity() {
                         Log.d("GET_CH_T", " condition : " + condition.toString())
                         Log.d("GET_CH_T", " participants : " + participants.toString())
                     }
+                    data.sortBy { it.title }
                     // 어댑터 생성 후 데이터 저장
                     var adapter = ChallengeAdapter()
                     adapter.listData = data
