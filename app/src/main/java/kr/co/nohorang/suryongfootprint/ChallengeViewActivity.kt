@@ -6,7 +6,6 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.coroutines.*
 import kr.co.nohorang.suryongfootprint.data.Challenge
 import kr.co.nohorang.suryongfootprint.databinding.ActivityChallengeViewBinding
 import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
@@ -68,6 +67,7 @@ class ChallengeViewActivity : AppCompatActivity() {
                         Log.d("GET_CH_T", " condition : " + condition.toString())
                         Log.d("GET_CH_T", " participants : " + participants.toString())
                     }
+                    data.sortBy { it.title }
                     // 어댑터 생성 후 데이터 저장
                     var adapter = ChallengeAdapter()
                     adapter.listData = data

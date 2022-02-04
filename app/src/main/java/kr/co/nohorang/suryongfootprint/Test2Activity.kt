@@ -60,32 +60,33 @@ class Test2Activity : AppCompatActivity() {
                     }
                 })
         }
-/*
-        // 챌린지 참여하기(포스트 올리기) 테스트
-        binding.uploadPostBtn.setOnClickListener {
-            //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
-            var p_dto = PostCreationDTO("", 1, "", "", 1)
 
-            //response로 가져올 data 선언
-            var responsePost: Post? = null
 
-            //Retrofit 통신 - getChallenges
-            RetrofitBuilder.challenge_api.createPost(p_dto).enqueue(object : Callback<Post> {
-                //request, response 정상 수행
-                override fun onResponse(call: Call<Post>, response: Response<Post>) {
-                    //업로드한 Post 정보
-                    responsePost = response.body()
-                    Log.d("CREATE_POST_T", "response : " + responsePost?.toString())
-                }
+//        // 챌린지 참여하기(포스트 올리기) 테스트
+//        binding.uploadPostBtn.setOnClickListener {
+//            //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
+//            var p_dto = PostCreationDTO("",1, "","",1)
+//
+//            //response로 가져올 data 선언
+//            var responsePost: Post?=null
+//
+//            //Retrofit 통신 - getChallenges
+//            RetrofitBuilder.challenge_api.createPost(p_dto).enqueue(object : Callback<Post> {
+//                //request, response 정상 수행
+//                override fun onResponse(call: Call<Post>, response: Response<Post>) {
+//                    //업로드한 Post 정보
+//                    responsePost=response.body()
+//                    Log.d("CREATE_POST_T", "response : " + responsePost?.toString())
+//                }
+//
+//                //request, response 실패
+//                override fun onFailure(call: Call<Post>, t: Throwable) {
+//                    t.message?.let { Log.e("CREATE_POST_F", it) }
+//                }
+//            })
+//        }
 
-                //request, response 실패
-                override fun onFailure(call: Call<Post>, t: Throwable) {
-                    t.message?.let { Log.e("CREATE_POST_F", it) }
-                }
-            })
-
-        }
-*/
+        // 참여횟수
         binding.getPostCountBtn.setOnClickListener {
             //Retrofit 통신 - getChallenges
             RetrofitBuilder.challenge_api.getPostCounts().enqueue(object : Callback<List<Count>> {
@@ -216,5 +217,6 @@ class Test2Activity : AppCompatActivity() {
             })
 
         }
+
     }
 }

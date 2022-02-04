@@ -40,6 +40,13 @@ class ApprovalActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
+        binding.mypageMenuBtn.setOnClickListener {
+            val intent = Intent(this, MypageMainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
     }
 
     // 테스트용 참여횟수 데이터 생성 함수
