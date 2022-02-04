@@ -3,12 +3,13 @@ package com.example.suryongfootprint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.suryongfootprint.databinding.ActivityMypageEditBinding
-import com.example.suryongfootprint.databinding.ActivityMypageMainBinding
+import kr.co.nohorang.suryongfootprint.SettingActivity
+import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
+import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageEditBinding
 
 class MypageEditActivity : AppCompatActivity() {
+    val binding by lazy { ActivityMypageEditBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding = ActivityMypageEditBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
