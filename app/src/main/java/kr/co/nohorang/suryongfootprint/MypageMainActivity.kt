@@ -7,15 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-<<<<<<< HEAD
 import android.widget.Button
 import androidx.annotation.RequiresApi
-=======
-import android.widget.Toast
-import kr.co.nohorang.suryongfootprint.BadgeActivity
-import kr.co.nohorang.suryongfootprint.SettingActivity
-
->>>>>>> ca1b2713a918db50caba4e36fda47440c856de45
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMainBinding
 
 class MypageMainActivity : AppCompatActivity() {
@@ -33,10 +26,7 @@ class MypageMainActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-<<<<<<< HEAD
-=======
             intent.putExtra("current_user_id", current_user_id)
->>>>>>> ca1b2713a918db50caba4e36fda47440c856de45
             startActivity(intent)
         }
         binding.approvalMenuBtn.setOnClickListener {
