@@ -1,4 +1,4 @@
-# 🐾SuryongFootprint-Android🐾
+#SuryongFootprint-Android🐾
 
 탄소 발자국을 줄이는 습관을 재미있는 챌린지를 통해 자연스럽게 형성할 수 있는 앱 서비스
  
