@@ -9,20 +9,21 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/toolbar_edge"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_marginLeft="25dp"
             android:text="nickname"
             android:textColor="#222222"
             android:textSize="22sp"
@@ -34,87 +35,83 @@
             android:id="@+id/setting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             app:srcCompat="@drawable/setting_model" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/badge_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
+            android:layout_marginRight="20dp"
             app:srcCompat="@drawable/badge_model" />
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
+        android:id="@+id/spinnerLinear"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp">
 
         <Spinner
             android:id="@+id/dropdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
             android:background="@drawable/round_edge"
-            android:entries="@array/challenges_do" />
+            android:entries="@array/challenges_do"
+            android:padding="5dp"
+            android:spinnerMode="dropdown"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/toggleLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/challenge_ing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:text="완료전"
-            android:textColor="@color/black"
-            app:backgroundTint="@color/white" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:textColor="#343434"
+            android:textStyle="bold"
+            app:backgroundTint="@color/white"
+            app:strokeColor="#CBCBCB"
+            app:strokeWidth="1dp" />
 
         <Button
             android:id="@+id/challenge_approval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:text="승인대기"
+            android:textColor="#343434"
+            android:textStyle="bold"
             app:backgroundTint="@color/white"
-            android:textColor="@color/black"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            app:strokeColor="#CBCBCB"
+            app:strokeWidth="1dp" />
 
         <Button
             android:id="@+id/challenge_finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:text="완료"
-            android:textColor="@color/black"
-            app:backgroundTint="@color/white" />
+            android:textColor="#343434"
+            android:textStyle="bold"
+            app:backgroundTint="@color/white"
+            app:strokeColor="#CBCBCB"
+            app:strokeWidth="1dp" />
 
     </LinearLayout>
 
@@ -127,7 +124,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -139,16 +136,17 @@
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/footprint_finished" />
 
                 <TextView
                     android:id="@+id/date1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2022.02.03"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:text="2022.02.03" />
             </FrameLayout>
 
             <FrameLayout
@@ -161,14 +159,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     app:srcCompat="@drawable/footprint_finished" />
+
                 <TextView
                     android:id="@+id/date2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2022.02.05"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:text="2022.02.05" />
             </FrameLayout>
 
             <ImageView
@@ -184,7 +183,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="30dp">
 
             <ImageView
                 android:id="@+id/imageView4"

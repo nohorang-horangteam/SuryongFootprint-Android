@@ -21,6 +21,7 @@ class MypageMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         val current_user_id=intent.getStringExtra("current_user_id")
 
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
@@ -60,29 +61,6 @@ class MypageMainActivity : AppCompatActivity() {
         binding.badgeBtn.setOnClickListener() {
             val intent = Intent(this, BadgeActivity::class.java)
             intent.putExtra("current_user_id", current_user_id)
-            startActivity(intent)
-        }
-
-        //메인메뉴바 버튼설정
-        binding.homeMenuBtn.setOnClickListener {
-            val intent = Intent(this, MypageMainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-        }
-        binding.approvalMenuBtn.setOnClickListener {
-            val intent = Intent(this, ApprovalActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-        }
-        binding.rankingMenuBtn.setOnClickListener {
-            val intent = Intent(this, RankingActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
 
