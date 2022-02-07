@@ -22,6 +22,7 @@
 |  | 사용 언어 및 라이브러리 | Tools |
 | ------ | ------ | ------ |
 | Android | Kotlin, Retrofit2 | AndroidStudio |
+| Server | SpringBoot(Java), Spring Data JPA | IntelliJ IDEA Community Edition |
 | 기타 협업 |  | Github, Notion, GoogleDocs |
 
 
