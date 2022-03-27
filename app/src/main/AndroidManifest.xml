@@ -76,7 +76,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".MypageMainActivity"
+            android:name=".MypageActivity"
             android:exported="true" />
         <activity
             android:name=".MypageEditActivity"

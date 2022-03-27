@@ -1,14 +1,10 @@
 package kr.co.nohorang.suryongfootprint
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import kr.co.nohorang.suryongfootprint.data.Challenge
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMainBinding
 import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
@@ -24,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val current_user_id=intent.getStringExtra("current_user_id")
+        val current_user_id = intent.getStringExtra("current_user_id")
 
         // 오늘의 챌린지 텍스트 앞으로 이동
         binding.dailyChallengeText.bringToFront()
@@ -60,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.mypageMenuBtn.setOnClickListener {
-            val intent = Intent(this, MypageMainActivity::class.java)
+            val intent = Intent(this, MypageActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
