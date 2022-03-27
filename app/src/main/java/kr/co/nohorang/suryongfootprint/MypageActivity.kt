@@ -8,14 +8,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
-import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMainBinding
-import org.w3c.dom.Text
+import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageBinding
 
-class MypageMainActivity : AppCompatActivity() {
-    val binding by lazy { ActivityMypageMainBinding.inflate(layoutInflater) }
+class MypageActivity : AppCompatActivity() {
+    val binding by lazy { ActivityMypageBinding.inflate(layoutInflater) }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +20,9 @@ class MypageMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val current_user_id=intent.getStringExtra("current_user_id")
+
+        // 닉네임 표시
+        binding.nickname.text = current_user_id;
 
         // 메인메뉴 버튼 - 액티비티 이동 (+ 마이페이지 액티비티)
         binding.homeMenuBtn.setOnClickListener {
@@ -50,6 +50,7 @@ class MypageMainActivity : AppCompatActivity() {
             intent.putExtra("current_user_id", current_user_id)
             startActivity(intent)
         }
+
         //세팅 버튼
         binding.settingBtn.setOnClickListener() {
             val intent = Intent(this, SettingActivity::class.java)
@@ -65,8 +66,8 @@ class MypageMainActivity : AppCompatActivity() {
         }
 
         //spinning(드롭다운)
-        val adapter = binding.dropdown.adapter
-        binding.dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        val adapter = binding.spinner.adapter
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -81,19 +82,13 @@ class MypageMainActivity : AppCompatActivity() {
             }
         }
 
-        //완료전 승인대기 완료 버튼
+        // 완료전 승인대기 완료 버튼
         val color = getColor(R.color.btn_grey)
-        val whitecolor=getColor(R.color.white)
-        val button1: Button = findViewById(R.id.challenge_ing)
-        val button2: Button = findViewById(R.id.challenge_approval)
-        val button3: Button = findViewById(R.id.challenge_finish)
-        val text1: TextView =findViewById(R.id.date1)
-        val text2: TextView =findViewById(R.id.date2)
-        val print1:ImageView=findViewById(R.id.imageView)
-        val print2:ImageView=findViewById(R.id.imageView2)
-        val print3:ImageView=findViewById(R.id.imageView3)
-        val print4:ImageView=findViewById(R.id.imageView4)
-        val print5:ImageView=findViewById(R.id.imageView5)
+        val whitecolor = getColor(R.color.white)
+        val button1: Button = findViewById(R.id.int_btn)
+        val button2: Button = findViewById(R.id.wait_btn)
+        val button3: Button = findViewById(R.id.fin_btn)
+
         button1.setOnClickListener {
             button1.setBackgroundColor(color)
             button2.setBackgroundColor(whitecolor)
@@ -112,19 +107,5 @@ class MypageMainActivity : AppCompatActivity() {
             button1.setBackgroundColor(whitecolor)
             button2.setBackgroundColor(whitecolor)
         }
-        //완료한 챌린지 불러오는거 연결 필요
-//        binding.dropdown.adapter = adapter
-//        binding.dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(
-//                parent: AdapterView<*>?,
-//                view: View?,
-//                position: Int,
-//                id: Long
-//            ) {
-//                //발자국 불러오기
-//            }
-//
-//            //완료전 승인대기 완료 버튼
-//        }
     }
 }

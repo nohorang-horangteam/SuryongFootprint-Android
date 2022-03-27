@@ -3,7 +3,6 @@ package kr.co.nohorang.suryongfootprint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.co.nohorang.suryongfootprint.data.TestCount
 import kr.co.nohorang.suryongfootprint.databinding.ActivityApprovalBinding
@@ -51,7 +50,7 @@ class ApprovalActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.mypageMenuBtn.setOnClickListener {
-            val intent = Intent(this, MypageMainActivity::class.java)
+            val intent = Intent(this, MypageActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
