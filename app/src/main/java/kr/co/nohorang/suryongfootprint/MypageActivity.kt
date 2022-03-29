@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Button
 import androidx.annotation.RequiresApi
 import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageBinding
 
@@ -82,30 +81,36 @@ class MypageActivity : AppCompatActivity() {
             }
         }
 
-        // 완료전 승인대기 완료 버튼
-        val color = getColor(R.color.btn_grey)
-        val whitecolor = getColor(R.color.white)
-        val button1: Button = findViewById(R.id.int_btn)
-        val button2: Button = findViewById(R.id.wait_btn)
-        val button3: Button = findViewById(R.id.fin_btn)
+        // 챌린지 상태 토글 버튼
+        val greyColor = getColor(R.color.btn_grey)
+        val whiteColor = getColor(R.color.white)
+        val textColor = getColor(R.color.toggle_grey)
 
-        button1.setOnClickListener {
-            button1.setBackgroundColor(color)
-            button2.setBackgroundColor(whitecolor)
-            button3.setBackgroundColor(whitecolor)
-
+        binding.intBtn.setOnClickListener {
+            binding.intBtn.setBackgroundColor(greyColor)
+            binding.waitBtn.setBackgroundColor(whiteColor)
+            binding.finBtn.setBackgroundColor(whiteColor)
+            binding.intBtn.setTextColor(whiteColor)
+            binding.waitBtn.setTextColor(textColor)
+            binding.finBtn.setTextColor(textColor)
         }
 
-        button2.setOnClickListener {
-            button2.setBackgroundColor(color)
-            button1.setBackgroundColor(whitecolor)
-            button3.setBackgroundColor(whitecolor)
+        binding.waitBtn.setOnClickListener {
+            binding.waitBtn.setBackgroundColor(greyColor)
+            binding.intBtn.setBackgroundColor(whiteColor)
+            binding.finBtn.setBackgroundColor(whiteColor)
+            binding.intBtn.setTextColor(textColor)
+            binding.waitBtn.setTextColor(whiteColor)
+            binding.finBtn.setTextColor(textColor)
         }
 
-        button3.setOnClickListener {
-            button3.setBackgroundColor(color)
-            button1.setBackgroundColor(whitecolor)
-            button2.setBackgroundColor(whitecolor)
+        binding.finBtn.setOnClickListener {
+            binding.finBtn.setBackgroundColor(greyColor)
+            binding.intBtn.setBackgroundColor(whiteColor)
+            binding.waitBtn.setBackgroundColor(whiteColor)
+            binding.intBtn.setTextColor(textColor)
+            binding.waitBtn.setTextColor(textColor)
+            binding.finBtn.setTextColor(whiteColor)
         }
     }
 }

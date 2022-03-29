@@ -51,22 +51,45 @@
                 android:id="@+id/setting_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="7dp"
                 app:srcCompat="@drawable/setting_model" />
 
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/spinnerLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/round_edge"
-            android:entries="@array/challenges_do"
-            android:padding="7dp"
-            android:spinnerMode="dialog"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:layout_marginTop="15dp">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_edge"
+                android:entries="@array/challenges_do"
+                android:paddingLeft="7dp"
+                android:paddingTop="7dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="7dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="11dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/polygon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/toggleLinear"
@@ -87,7 +110,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="진행중"
-                android:textColor="#343434"
+                android:textColor="#9A9A9A"
                 android:textStyle="bold"
                 app:strokeColor="#CBCBCB"
                 app:strokeWidth="1dp" />
@@ -101,7 +124,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="승인대기"
-                android:textColor="#343434"
+                android:textColor="#9A9A9A"
                 android:textStyle="bold"
                 app:backgroundTint="@color/white"
                 app:strokeColor="#CBCBCB"
@@ -115,7 +138,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="완료"
-                android:textColor="#343434"
+                android:textColor="#9A9A9A"
                 android:textStyle="bold"
                 app:backgroundTint="@color/white"
                 app:strokeColor="#CBCBCB"
@@ -174,12 +197,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/mainmenu_selected_edge"
+            android:background="@drawable/mainmenu_edge"
             android:clickable="false"
             android:minWidth="0dp"
             android:minHeight="0dp"
             app:srcCompat="@drawable/approval_icon"
-            app:tint="@color/white"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
@@ -198,9 +220,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/mainmenu_edge"
+            android:background="@drawable/mainmenu_selected_edge"
             android:minWidth="0dp"
             android:minHeight="0dp"
+            android:tint="@color/white"
             app:srcCompat="@drawable/mypage_icon"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>

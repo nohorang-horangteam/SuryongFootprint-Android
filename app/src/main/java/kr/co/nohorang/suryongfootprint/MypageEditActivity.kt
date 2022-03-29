@@ -27,11 +27,11 @@ class MypageEditActivity : AppCompatActivity() {
 
         // EditText 입력 중 외부 터치 시 키보드 내리기
         binding.layout.setOnClickListener {
-            hideKeyboard(binding.editText)
+            hideKeyboard(binding.postContentEditText)
         }
 
         //확인버튼
-        binding.confirmBtn.setOnClickListener() {
+        binding.editBtn.setOnClickListener() {
             Toast.makeText(this, "수정되었습니다.", Toast.LENGTH_SHORT).show()
             finish()
             //글 서버에 저장하기
