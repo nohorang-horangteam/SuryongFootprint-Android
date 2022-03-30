@@ -4,12 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import kr.co.nohorang.suryongfootprint.SettingActivity
-import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageMydetailBinding
+import kr.co.nohorang.suryongfootprint.databinding.ActivityMypageDetailBinding
 import java.text.SimpleDateFormat
 
-class MypageMydetailActivity : AppCompatActivity() {
-    val binding by lazy { ActivityMypageMydetailBinding.inflate(layoutInflater) }
+class MypageDetailActivity : AppCompatActivity() {
+    val binding by lazy { ActivityMypageDetailBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -28,7 +27,7 @@ class MypageMydetailActivity : AppCompatActivity() {
             finish()
         }
         //수정하기 버튼
-        binding.confirm.setOnClickListener() {
+        binding.editBtn.setOnClickListener() {
             //수정페이지로
             val intent = Intent(this, MypageEditActivity::class.java)
             intent.putExtra("current_user_id", current_user_id)
@@ -40,7 +39,7 @@ class MypageMydetailActivity : AppCompatActivity() {
         }
 
         //삭제하기 버튼
-        binding.delete.setOnClickListener() {
+        binding.deleteBtn.setOnClickListener() {
             Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
             intent.putExtra("current_user_id", current_user_id)
             finish()

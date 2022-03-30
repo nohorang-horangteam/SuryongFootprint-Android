@@ -27,6 +27,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.net.URI
 import java.sql.Blob
 
 
@@ -41,7 +42,7 @@ class PostActivity : BaseActivity() {
     var realUri: Uri? = null
 
     // 데이터베이스에 저장될 Blob 변수
-    var postImg: Blob? = null
+    var postImg: ByteArray? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,8 +70,11 @@ class PostActivity : BaseActivity() {
         // 인증 버튼 - 액티비티 종료 (+ DB에 저장)
         binding.postBtn.setOnClickListener {
             //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
-            val user_id = "my"
+
+            val user_id = "testID"
+            // val challenge_id = challengeID
             val challenge_id = challengeID
+
             val img = postImg
             val content = binding.postContentEditText.text.toString()
             val state = 0
@@ -78,14 +82,14 @@ class PostActivity : BaseActivity() {
             var p_dto = PostCreationDTO(user_id, challenge_id, img, content, state)
 
             //response로 가져올 data 선언
-            var responsePost: Post?=null
+            var responsePost: Post ?= null
 
             //Retrofit 통신 - getChallenges
             RetrofitBuilder.challenge_api.createPost(p_dto).enqueue(object : Callback<Post> {
                 //request, response 정상 수행
                 override fun onResponse(call: Call<Post>, response: Response<Post>) {
                     //업로드한 Post 정보
-                    responsePost=response.body()
+                    responsePost = response.body()
                     Log.d("CREATE_POST_T", "response : " + responsePost?.toString())
                     Log.d("CREATE_POST_T", "user_id : " + responsePost?.user_id)
                     Log.d("CREATE_POST_T", "challenge_id : " + responsePost?.challenge_id.toString())
@@ -215,6 +219,11 @@ class PostActivity : BaseActivity() {
                         val bitmap = loadBitmap(uri)
                         binding.imagePreview.setImageBitmap(bitmap)
 
+                        var inputStream = this@PostActivity?.contentResolver.openInputStream(uri)
+                        if (inputStream != null) {
+                            postImg = inputStream.readBytes()
+                        }
+
 //                        // 비트맵 BLOB 형식으로 변환
 //                        val stream = ByteArrayOutputStream()
 //                        if (bitmap != null) {
@@ -237,8 +246,6 @@ class PostActivity : BaseActivity() {
             binding.postBtn.isEnabled = true
         }
     }
-
-
 
     // 키보드 비활성화 함수
     fun hideKeyboard(editText: EditText) {

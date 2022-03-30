@@ -76,13 +76,13 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".MypageMainActivity"
+            android:name=".MypageActivity"
             android:exported="true" />
         <activity
             android:name=".MypageEditActivity"
             android:exported="true" />
         <activity
-            android:name=".MypageMydetailActivity"
+            android:name=".MypageDetailActivity"
             android:exported="true" />
         <activity
             android:name=".BadgeActivity"
