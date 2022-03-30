@@ -10,10 +10,9 @@ import java.net.URI
 data class Post (@SerializedName("postId")var post_id: String?,
                  @SerializedName("userId")var user_id: String?,
                  @SerializedName("challengeId")var challenge_id: Int?,
-                 @SerializedName("countId")var challenge_count: Int?,
-                 @SerializedName("img")var img: ByteArray?,
-                 @SerializedName("content")var content:String?,
-                 @SerializedName("state")var state:Int?
+                 @SerializedName("countId")var countId: Int?,
+                 @SerializedName("img")var img: Blob?,
+                 @SerializedName("content")var content:String?
 ) :Serializable {}
 
 data class PostCreationDTO(
@@ -25,6 +24,5 @@ data class PostCreationDTO(
 ):Serializable{}
 
 data class PostUpdateDTO(
-    @SerializedName("content")var content:String?,
-    @SerializedName("state")var state:Int?
+    @SerializedName("content")var content:String?
 ):Serializable{}

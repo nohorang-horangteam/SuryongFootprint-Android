@@ -8,8 +8,8 @@ import java.io.Serializable
 data class Count (@SerializedName("CountId")var count_id: Int?,
                  @SerializedName("userId")var user_id: String?,
                  @SerializedName("challengeId")var challenge_id: Int?,
-                 @SerializedName("challengeCount")var challenge_count: Int?,
                  @SerializedName("postCount")var post_count:Int?,
-                  @SerializedName("approvalCount")var approval_count:Int?
+                  @SerializedName("approvalCount")var approval_count:Int?,
+                  @SerializedName("state")var state:Int?
 ) :Serializable {
 }

@@ -70,9 +70,11 @@ class PostActivity : BaseActivity() {
         // 인증 버튼 - 액티비티 종료 (+ DB에 저장)
         binding.postBtn.setOnClickListener {
             //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
+
             val user_id = "testID"
             // val challenge_id = challengeID
-            val challenge_id = 1
+            val challenge_id = challengeID
+
             val img = postImg
             val content = binding.postContentEditText.text.toString()
             val state = 0
@@ -93,7 +95,6 @@ class PostActivity : BaseActivity() {
                     Log.d("CREATE_POST_T", "challenge_id : " + responsePost?.challenge_id.toString())
                     Log.d("CREATE_POST_T", "img : " + responsePost?.img.toString())
                     Log.d("CREATE_POST_T", "content : " + responsePost?.content)
-                    Log.d("CREATE_POST_T", "state : " + responsePost?.state.toString() )
 
                     Toast.makeText(this@PostActivity, "인증이 업로드되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
