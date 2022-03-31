@@ -4,23 +4,24 @@ import android.net.Uri
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.net.URI
+import java.util.*
 
 // JSON 타입 변환에 사용될 객체(DTO)
 // request의 편의성을 고려해서 선언할 것.
-data class Post (@SerializedName("postId")var post_id: String?,
+data class Post (@SerializedName("postId")var post_id: Int?,
                  @SerializedName("userId")var user_id: String?,
                  @SerializedName("challengeId")var challenge_id: Int?,
-                 @SerializedName("countId")var countId: Int?,
-                 @SerializedName("img")var img: Blob?,
-                 @SerializedName("content")var content:String?
+                 @SerializedName("countId")var count_id: Int?,
+                 @SerializedName("img")var img: String?,
+                 @SerializedName("content")var content:String?,
+                 @SerializedName("date")var date:Date?,
 ) :Serializable {}
 
 data class PostCreationDTO(
     @SerializedName("userId")var user_id: String?,
     @SerializedName("challengeId")var challenge_id: Int?,
-    @SerializedName("img")var img: ByteArray?,
-    @SerializedName("content")var content:String?,
-    @SerializedName("state")var state:Int?
+    @SerializedName("img")var img: String?,
+    @SerializedName("content")var content:String?
 ):Serializable{}
 
 data class PostUpdateDTO(
