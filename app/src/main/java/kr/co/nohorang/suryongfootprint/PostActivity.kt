@@ -93,6 +93,7 @@ class PostActivity : BaseActivity() {
                     Log.d("CREATE_POST_T", "challenge_id : " + responsePost?.challenge_id.toString())
                     Log.d("CREATE_POST_T", "img : " + responsePost?.img)
                     Log.d("CREATE_POST_T", "content : " + responsePost?.content)
+                    Log.d("CREATE_POST_T", "Date : " + responsePost?.date)
 
                     Toast.makeText(this@PostActivity, "인증이 업로드되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
@@ -217,6 +218,7 @@ class PostActivity : BaseActivity() {
                         val bitmap = loadBitmap(uri)
                         binding.imagePreview.setImageBitmap(bitmap)
 
+                        //bitmap을 base64 기반의 string으로 변환(인코딩)
                         val baos = ByteArrayOutputStream()
                         bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                         postImg = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP)
