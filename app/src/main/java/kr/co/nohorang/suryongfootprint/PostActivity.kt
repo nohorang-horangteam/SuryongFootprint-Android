@@ -69,17 +69,10 @@ class PostActivity : BaseActivity() {
         // 인증 버튼 - 액티비티 종료 (+ DB에 저장)
         binding.postBtn.setOnClickListener {
             //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
-<<<<<<< HEAD
-
-            val user_id = "testID"
-            // val challenge_id = challengeID
-            val challenge_id = challengeID
-
-=======
             val user_id = "my"
              val challenge_id = challengeID
             //val challenge_id = 1
->>>>>>> 30a4a60d88e5b9545ca9782901ed9ddfc20c51ee
+
             val img = postImg
             val content = binding.postContentEditText.text.toString()
             val state = 0
