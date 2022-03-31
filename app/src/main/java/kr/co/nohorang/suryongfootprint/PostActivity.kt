@@ -20,6 +20,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import android.content.DialogInterface
 import android.graphics.Color
+import android.util.Base64
 import kr.co.nohorang.suryongfootprint.data.Post
 import kr.co.nohorang.suryongfootprint.data.PostCreationDTO
 import kr.co.nohorang.suryongfootprint.retrofit.RetrofitBuilder
@@ -27,8 +28,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
-import java.net.URI
-import java.sql.Blob
 
 
 class PostActivity : BaseActivity() {
@@ -42,7 +41,7 @@ class PostActivity : BaseActivity() {
     var realUri: Uri? = null
 
     // 데이터베이스에 저장될 Blob 변수
-    var postImg: ByteArray? = null
+    var postImg: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,16 +69,22 @@ class PostActivity : BaseActivity() {
         // 인증 버튼 - 액티비티 종료 (+ DB에 저장)
         binding.postBtn.setOnClickListener {
             //이미지 형식 Blob으로 되어있음. (data/Post.kt 참고)
+<<<<<<< HEAD
 
             val user_id = "testID"
             // val challenge_id = challengeID
             val challenge_id = challengeID
 
+=======
+            val user_id = "my"
+             val challenge_id = challengeID
+            //val challenge_id = 1
+>>>>>>> 30a4a60d88e5b9545ca9782901ed9ddfc20c51ee
             val img = postImg
             val content = binding.postContentEditText.text.toString()
             val state = 0
 
-            var p_dto = PostCreationDTO(user_id, challenge_id, img, content, state)
+            var p_dto = PostCreationDTO(user_id, challenge_id, img, content)
 
             //response로 가져올 data 선언
             var responsePost: Post ?= null
@@ -91,9 +96,9 @@ class PostActivity : BaseActivity() {
                     //업로드한 Post 정보
                     responsePost = response.body()
                     Log.d("CREATE_POST_T", "response : " + responsePost?.toString())
-                    Log.d("CREATE_POST_T", "user_id : " + responsePost?.user_id)
+                    Log.d("CREATE_POST_T", "user_id : " + responsePost?.user_id.toString())
                     Log.d("CREATE_POST_T", "challenge_id : " + responsePost?.challenge_id.toString())
-                    Log.d("CREATE_POST_T", "img : " + responsePost?.img.toString())
+                    Log.d("CREATE_POST_T", "img : " + responsePost?.img)
                     Log.d("CREATE_POST_T", "content : " + responsePost?.content)
 
                     Toast.makeText(this@PostActivity, "인증이 업로드되었습니다.", Toast.LENGTH_SHORT).show()
@@ -219,9 +224,13 @@ class PostActivity : BaseActivity() {
                         val bitmap = loadBitmap(uri)
                         binding.imagePreview.setImageBitmap(bitmap)
 
-                        var inputStream = this@PostActivity?.contentResolver.openInputStream(uri)
+                        val baos = ByteArrayOutputStream()
+                        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                        postImg = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP)
+
+                        var inputStream = this@PostActivity.contentResolver.openInputStream(uri)
                         if (inputStream != null) {
-                            postImg = inputStream.readBytes()
+
                         }
 
 //                        // 비트맵 BLOB 형식으로 변환
